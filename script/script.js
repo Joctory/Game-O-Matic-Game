@@ -1574,7 +1574,7 @@ let events = []; // queue for events
 function startGame() {
   events.push({
     event: "nbpieces",
-    nbpieces: 10, //Number of puzzle pieces
+    nbpieces: 4, //Number of puzzle pieces
   });
   startButton.style.display = "none";
 }
