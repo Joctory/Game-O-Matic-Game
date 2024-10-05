@@ -1,0 +1,218 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flip a Card</title>
+
+    <style>
+      body {
+        background-color: #dadada;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0px;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+      }
+
+      #Grid {
+        display: grid;
+        grid-template-columns: auto auto auto auto;
+        gap: 2vmax;
+      }
+
+      .Card {
+        width: 20vw;
+        height: 28vh;
+        perspective: 100vw;
+      }
+
+      .Back,
+      .Front {
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        border-radius: 2.5vw;
+        -webkit-backface-visibility: hidden;
+        backface-visibility: hidden;
+        transition: transform ease-out 0.5s;
+      }
+
+      .Back {
+        background-color: #f1f1f1;
+        cursor: pointer;
+      }
+
+      .Front {
+        position: absolute;
+        display: flex;
+        background-color: #fff;
+        font-size: 20vmin;
+        align-items: center;
+        justify-content: center;
+        transform: rotateY(-180deg);
+        pointer-events: none;
+      }
+
+      .Flip.Back {
+        transform: rotateY(-180deg) !important;
+      }
+
+      .Flip.Front {
+        transform: rotateY(-360deg) !important;
+      }
+
+      @media (orientation: portrait) {
+        #Grid {
+          grid-template-columns: auto auto auto;
+        }
+
+        .Card {
+          width: 30vw;
+          height: 22vh;
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div id="Grid">
+      <div class="Card">
+        <div class="Back" id="Back-1"></div>
+        <div class="Front" id="Front-1"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-2"></div>
+        <div class="Front" id="Front-2"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-3"></div>
+        <div class="Front" id="Front-3"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-4"></div>
+        <div class="Front" id="Front-4"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-5"></div>
+        <div class="Front" id="Front-5"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-6"></div>
+        <div class="Front" id="Front-6"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-7"></div>
+        <div class="Front" id="Front-7"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-8"></div>
+        <div class="Front" id="Front-8"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-9"></div>
+        <div class="Front" id="Front-9"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-10"></div>
+        <div class="Front" id="Front-10"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-11"></div>
+        <div class="Front" id="Front-11"></div>
+      </div>
+      <div class="Card">
+        <div class="Back" id="Back-12"></div>
+        <div class="Front" id="Front-12"></div>
+      </div>
+    </div>
+
+    <script>
+      "use-strict";
+
+      const theme = ["1", "2", "3", "4", "5", "6"];
+
+      let cards = [];
+      let history = [];
+      let flipped = 0;
+      let need = 2;
+      let paused = false;
+
+      window.addEventListener("resize", zoom);
+
+      function zoom() {
+        let e = document.getElementById("Grid");
+        let w = Number(window.innerWidth);
+        let h = Number(window.innerHeight);
+        let z = Math.min(w / 1920, h / 1080) * 0.95;
+        // document.body.style.transform = "scale(" + z + ")";
+      }
+
+      zoom();
+
+      document.getElementById("Grid").addEventListener("click", click);
+
+      function start() {
+        theme.forEach((i) => {
+          cards.push(i);
+          cards.push(i); // Do it twice!
+        });
+
+        let i = 0;
+
+        while (cards.length > 0) {
+          i++;
+          let r = Math.floor(Math.random() * cards.length); // Random Card
+          let c = cards[r];
+          document.getElementById("Front-" + i).innerText = c;
+          cards.splice(r, 1);
+        }
+      }
+
+      start();
+
+      function click(e) {
+        let t = e.target.id; // “t” is the target element
+        if (
+          !paused &&
+          t.startsWith("Back") &&
+          !e.target.classList.contains("Flip")
+        ) {
+          // Is it a selectable card?
+          let a = t.split("-"); // Target array…
+          let n = a[1]; // Number
+          //console.log("Card " + n + " was selected.");
+          history.push(n);
+          flip(n);
+          flipped++;
+          if (flipped == need) {
+            h1 = history[history.length - 2];
+            h2 = history[history.length - 1];
+            c1 = document.getElementById("Front-" + h1);
+            c2 = document.getElementById("Front-" + h2);
+            if (c1.innerText == c2.innerText) {
+              //console.log("Match! 🙂");
+              flipped = 0;
+            } else {
+              //console.log("No Match! 🙁");
+              paused = true;
+              setTimeout(function () {
+                flip(h1);
+                flip(h2);
+                flipped = 0;
+                paused = false;
+              }, 1000);
+            }
+          }
+        }
+      }
+
+      function flip(n) {
+        document.getElementById("Front-" + n).classList.toggle("Flip");
+        document.getElementById("Back-" + n).classList.toggle("Flip");
+      }
+    </script>
+  </body>
+</html>
