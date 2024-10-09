@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Company Lucky Draw</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+        background-color: white;
+        padding: 2rem;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      }
+      button {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .spinner {
+        border: 16px solid #f3f3f3;
+        border-top: 16px solid #3498db;
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        animation: spin 1s linear infinite;
+        margin: 20px auto;
+        display: none;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .prize-reveal {
+        font-size: 24px;
+        font-weight: bold;
+        color: #4caf50;
+        opacity: 0;
+        transition: opacity 0.5s ease-in-out;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Company Lucky Draw</h1>
+      <button onclick="startDraw()" id="drawButton">Draw a Prize</button>
+      <div class="spinner" id="spinner"></div>
+      <div id="result"></div>
+      <div class="prize-reveal" id="prizeReveal"></div>
+    </div>
+
+    <script>
+      const prizes = [
+        { name: "Grand Prize", probability: 0.05 },
+        { name: "Second Prize", probability: 0.15 },
+        { name: "Third Prize", probability: 0.3 },
+        { name: "Consolation Prize", probability: 0.5 },
+      ];
+
+      function startDraw() {
+        const spinner = document.getElementById("spinner");
+        const result = document.getElementById("result");
+        const prizeReveal = document.getElementById("prizeReveal");
+        const drawButton = document.getElementById("drawButton");
+
+        // Hide previous result and disable button
+        result.textContent = "";
+        prizeReveal.style.opacity = "0";
+        prizeReveal.textContent = "";
+        drawButton.disabled = true;
+
+        // Show spinner
+        spinner.style.display = "block";
+
+        // Simulate draw process
+        setTimeout(() => {
+          spinner.style.display = "none";
+          const drawnPrize = draw();
+          result.textContent = "And your prize is...";
+
+          // Reveal prize with a slight delay
+          setTimeout(() => {
+            prizeReveal.textContent = drawnPrize;
+            prizeReveal.style.opacity = "1";
+            drawButton.disabled = false;
+          }, 1000);
+        }, 3000); // Spinner shows for 3 seconds
+      }
+
+      function draw() {
+        const randomNumber = Math.random();
+        let cumulativeProbability = 0;
+        let result = "Better luck next time!";
+
+        for (const prize of prizes) {
+          cumulativeProbability += prize.probability;
+          if (randomNumber <= cumulativeProbability) {
+            result = prize.name;
+            break;
+          }
+        }
+
+        return result;
+      }
+    </script>
+  </body>
+</html>
