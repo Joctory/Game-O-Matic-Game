@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lucky Draw Slot Machine</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f0f0f0;
+      }
+      .container {
+        text-align: center;
+        background-color: #4a4a4a;
+        padding: 20px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+      }
+      .slot-machine {
+        display: flex;
+        justify-content: space-around;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .reel {
+        width: 80px;
+        height: 80px;
+        background-color: #ddd;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 24px;
+        font-weight: bold;
+        border: 2px solid #333;
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      #spinButton {
+        background-color: #4caf50;
+        border: none;
+        color: white;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border-radius: 5px;
+      }
+      #result {
+        margin-top: 20px;
+        font-size: 24px;
+        font-weight: bold;
+        color: #ffd700;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 style="color: #ffd700">Lucky Draw Slot Machine</h1>
+      <div class="slot-machine">
+        <div class="reel" id="reel1">?</div>
+        <div class="reel" id="reel2">?</div>
+        <div class="reel" id="reel3">?</div>
+      </div>
+      <button id="spinButton">SPIN</button>
+      <div id="result"></div>
+    </div>
+
+    <script>
+      const prizes = [
+        { name: "Grand Prize", symbol: "👑", probability: 0.05 },
+        { name: "Second Prize", symbol: "🥈", probability: 0.15 },
+        { name: "Third Prize", symbol: "🥉", probability: 0.3 },
+        { name: "Consolation Prize", symbol: "🎁", probability: 0.5 },
+      ];
+
+      const reels = [
+        document.getElementById("reel1"),
+        document.getElementById("reel2"),
+        document.getElementById("reel3"),
+      ];
+      const spinButton = document.getElementById("spinButton");
+      const resultDisplay = document.getElementById("result");
+
+      function getRandomPrize() {
+        const randomNumber = Math.random();
+        let cumulativeProbability = 0;
+
+        for (const prize of prizes) {
+          cumulativeProbability += prize.probability;
+          if (randomNumber <= cumulativeProbability) {
+            return prize;
+          }
+        }
+
+        return { name: "Try Again", symbol: "❓" };
+      }
+
+      function spinReel(reel, delay) {
+        return new Promise((resolve) => {
+          let spins = 0;
+          const maxSpins = 20 + Math.floor(Math.random() * 10);
+          const interval = setInterval(() => {
+            const randomPrize = getRandomPrize();
+            reel.textContent = randomPrize.symbol;
+            spins++;
+            if (spins >= maxSpins) {
+              clearInterval(interval);
+              resolve();
+            }
+          }, 100);
+        });
+      }
+
+      async function spin() {
+        spinButton.disabled = true;
+        resultDisplay.textContent = "";
+
+        const spinPromises = reels.map((reel, index) =>
+          spinReel(reel, index * 500)
+        );
+        await Promise.all(spinPromises);
+
+        const finalPrize = getRandomPrize();
+        reels.forEach((reel) => (reel.textContent = finalPrize.symbol));
+
+        resultDisplay.textContent = `You won: ${finalPrize.name}!`;
+        spinButton.disabled = false;
+      }
+
+      spinButton.addEventListener("click", spin);
+    </script>
+  </body>
+</html>
