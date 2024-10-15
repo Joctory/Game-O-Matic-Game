@@ -39,6 +39,10 @@ body {
   overflow: hidden;
 }
 
+.disabled {
+  pointer-events: none;
+}
+
 .polypiece {
   display: block;
   overflow: hidden;
@@ -101,6 +105,32 @@ body {
   position: absolute;
   top: 20px;
   left: 20px;
+  background-color: #bcfffb;
+  text-align: center;
+  padding: 5px 10px;
+  border-radius: 20px;
+  cursor: pointer;
+  z-index: 4;
+}
+
+#failMenu {
+  display: none;
+  flex-direction: column;
+  justify-items: center;
+  align-items: center;
+  width: 60%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: #fff;
+  border-radius: 10px;
+  padding: 15px;
+  text-align: center;
+  z-index: 3;
+}
+
+#restartButton {
   background-color: #bcfffb;
   text-align: center;
   padding: 5px 10px;

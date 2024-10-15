@@ -4,19 +4,23 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <link rel="stylesheet" type="text/css" href="css/style.css" />
     <title>Jigsaw Puzzle</title>
   </head>
   <body>
     <div id="backButton">Back</div>
     <div id="forPuzzle"></div>
+    <div id="timer">Time Left: <span id="timeleft">30</span></div>
     <div id="startButton">Start Game</div>
     <div id="completeMenu">
       <p>Congratulation! You have completed the puzzle!</p>
       <p>You have earn one entry</p>
       <div id="backTitle">Back to Menu</div>
+    </div>
+    <div id="failMenu">
+      <p>Time's Up! You have not completed the puzzle!</p>
+      <div id="restartButton">Restart</div>
     </div>
     <ul id="menu"></ul>
   </body>
