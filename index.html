@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      charset="UTF-8"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <title>AXS Game-O-Matic</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css"
+    />
+
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+  </head>
+  <body>
+    <div class="game-container">
+      <div id="home-screen" class="menu-container">
+        <div class="logo-main">
+          <img src="assets/logo.png" class="logo-img" />
+        </div>
+        <div class="selection-main">
+          <div class="start-btn" onclick="showPreview()">Start Game</div>
+          <div class="redeem-btn">Redeem Rewards</div>
+          <div class="credit-btn">Credits</div>
+        </div>
+      </div>
+      <div id="game-preview" class="game-selection">
+        <div class="glide">
+          <div class="glide__track" data-glide-el="track">
+            <ul class="glide__slides">
+              <li class="glide__slide">
+                <div class="game-selection-preview">
+                  <img src="https://picsum.photos/200/300" />
+                  <div class="play-button" onclick="menustartGame('game1')">
+                    Play
+                  </div>
+                </div>
+              </li>
+              <li class="glide__slide">
+                <div class="game-selection-preview">
+                  <img src="https://picsum.photos/200/300" />
+                  <div class="play-button" onclick="menustartGame('game2')">
+                    Play
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <!-- Control -->
+          <div class="glide-control" data-glide-el="controls">
+            <button id="prev-btn" data-glide-dir="<">Start</button>
+            <button id="next-btn" data-glide-dir=">">End</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Overlay -->
+      <div class="overlay" id="overlay"></div>
+
+      <!-- Game 1 -->
+      <div id="game1" class="mini-game-container">
+        <button onclick="confirmExit()" class="back-button">Exit Game</button>
+        <!-- Game 1 HTML elements -->
+        <iframe src="" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+
+      <!-- Game 2 -->
+      <div id="game2" class="mini-game-container">
+        <button onclick="confirmExit()" class="back-button">Exit Game</button>
+        <h2>Game 2</h2>
+        <!-- Game 2 HTML elements -->
+        <iframe src="" width="100%" height="100%" frameborder="0"></iframe>
+      </div>
+
+      <!-- Game Exit Overlay -->
+      <div id="game-exit" class="game-selection">
+        <h3>Are you confirm to exit?</h3>
+        <div onclick="exitGame()" class="exit-btn">Yes</div>
+        <div onclick="noExitGame()" class="exit-btn">No</div>
+      </div>
+    </div>
+  </body>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/npm/@glidejs/glide"
+  ></script>
+  <script type="text/javascript" src="js/menu.js"></script>
+</html>
