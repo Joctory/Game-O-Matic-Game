@@ -1,12 +1,12 @@
-window.addEventListener("load", function () {
-  var glide = new Glide(".glide", {
-    type: "slider",
-    startAt: 0,
-    perView: 1,
-    focusAt: "center",
-    rewind: false,
-  });
+var glide = new Glide(".glide", {
+  type: "slider",
+  startAt: 0,
+  perView: 1,
+  focusAt: "center",
+  rewind: false,
+});
 
+document.addEventListener("DOMContentLoaded", function () {
   glide.on("run", function () {
     const index = glide.index;
     if (index == 0) {
@@ -19,22 +19,48 @@ window.addEventListener("load", function () {
   });
 
   glide.mount();
+});
+
+window.addEventListener("load", function () {
   glide.update();
 });
+
+// Parameter
+var gameExit = document.getElementById("game-exit");
+var overlay = document.getElementById("overlay");
+var gamePreview = document.getElementById("game-preview");
+
 // Game Selection Script
 function showPreview() {
-  document.getElementById("game-preview").classList.add("active");
-  document.getElementById("overlay").style.display = "block";
+  gamePreview.classList.remove("closed");
+  gamePreview.classList.add("active");
+  overlay.style.display = "block";
 }
 
 function confirmExit() {
-  document.getElementById("game-exit").classList.add("active");
-  document.getElementById("overlay").style.display = "block";
+  gameExit.classList.remove("closed");
+  gameExit.classList.add("active");
+  overlay.style.display = "block";
 }
 
 function hidePreview() {
-  document.getElementById("game-preview").classList.remove("active");
-  document.getElementById("overlay").style.display = "none";
+  gamePreview.classList.remove("active");
+  gamePreview.classList.add("closed");
+  overlay.style.display = "none";
+}
+
+function exitGame() {
+  document.querySelectorAll(".mini-game-container").forEach((container) => {
+    gameExit.classList.remove("active");
+    overlay.style.display = "none";
+    container.classList.remove("active");
+  });
+}
+
+function noExitGame() {
+  gameExit.classList.remove("active");
+  gameExit.classList.add("closed");
+  overlay.style.display = "none";
 }
 
 function menustartGame(gameId) {
@@ -46,19 +72,6 @@ function menustartGame(gameId) {
   } else if (gameId === "game2") {
     game2Logic();
   }
-}
-
-function exitGame() {
-  document.querySelectorAll(".mini-game-container").forEach((container) => {
-    document.getElementById("game-exit").classList.remove("active");
-    document.getElementById("overlay").style.display = "none";
-    container.classList.remove("active");
-  });
-}
-
-function noExitGame() {
-  document.getElementById("game-exit").classList.remove("active");
-  document.getElementById("overlay").style.display = "none";
 }
 
 function game1Logic() {
