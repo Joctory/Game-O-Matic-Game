@@ -1,3 +1,5 @@
+/* Start of Global */
+
 * {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -13,16 +15,38 @@
   box-sizing: border-box;
 }
 
-body {
+body,
+html {
+  width: 100%;
+  height: 100%;
   overflow: hidden;
   padding: 0;
   margin: 0;
   background-color: #000;
 }
 
+.game-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.game-btn img {
+  width: 55%;
+  cursor: pointer;
+}
+
+.game-btn:active {
+  top: 2px;
+}
+
+/* End of Global */
+
 .game-container {
   width: 100%;
-  height: 100vh;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -37,7 +61,7 @@ body {
   justify-content: space-between;
   align-items: center;
 
-  /* background-image: url("../assets/menu-bg.jpg"); */
+  background-image: url("../assets/menu-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -125,6 +149,10 @@ body {
   outline: inherit;
 }
 
+.control-btn {
+  margin-top: 2px;
+}
+
 #prev-btn {
   display: none;
   left: 20px;
@@ -149,6 +177,10 @@ body {
   top: 5px;
   right: 5px;
   z-index: 1;
+}
+
+.menu-close-btn:active {
+  top: 7px;
 }
 
 .menu-close-btn img {
@@ -178,6 +210,24 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.selection-main {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.play-btn {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 20px;
 }
 
 /* In Game CSS */
