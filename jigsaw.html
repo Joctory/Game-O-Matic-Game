@@ -4,26 +4,65 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <link rel="stylesheet" type="text/css" href="css/jigsaw.css" />
     <title>Jigsaw Puzzle</title>
   </head>
   <body>
-    <h2>Game 1</h2>
+    <!-- How to play -->
+    <div id="howtoplayDiv" class="how-to-play">
+      <div class="how-to-play-inner">
+        <div class="how-to-play-img"><img src="assets/menu/how-to-play-blue.png" /></div>
+        <h3 class="ingame-title">
+          Sort pieces by color, shape, or edges, start with the corners and edges, and match pieces
+          to complete the picture.
+        </h3>
+        <div class="how-to-play-selection">
+          <div id="startButton" class="menu-btn game-btn-mg" onclick="hidePreview()">
+            <img src="assets/menu/start-button.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
     <div id="forPuzzle"></div>
-    <div id="timer">Time Left: <span id="g1timeleft">30</span></div>
-    <div id="startButton">Start Game</div>
-    <div id="completeMenu">
-      <p>Congratulation! You have completed the puzzle!</p>
-      <p>You have earn one entry</p>
-      <div id="backTitle">Back to Menu</div>
+    <div id="timer">Time Left: <span id="g1timeleft">60</span></div>
+
+    <!-- Level Complete -->
+    <div id="completeMenu" class="how-to-play">
+      <div class="how-to-play-inner">
+        <!-- <div class="how-to-play-img"><img src="assets/menu/how-to-play-blue.png" /></div> -->
+        <h3 class="ingame-title">Game Completed!</h3>
+        <span class="ingame-title">
+          Congratulation! You have completed the puzzle!<br />You have earn one entry
+        </span>
+        <div class="how-to-play-selection">
+          <div id="backTitle" class="menu-btn game-btn-mg" onclick="hidePreview()">
+            <img src="assets/menu/home-button.png" />
+          </div>
+        </div>
+      </div>
     </div>
-    <div id="failMenu">
-      <p>Time's Up! You have not completed the puzzle!</p>
-      <div id="restartButton">Restart</div>
+
+    <!-- Level Fail -->
+    <div id="failMenu" class="how-to-play">
+      <div class="how-to-play-inner">
+        <!-- <div class="how-to-play-img"><img src="assets/menu/how-to-play-blue.png" /></div> -->
+        <h3 class="ingame-title">Game Fail!</h3>
+        <span class="ingame-title">Time's Up! You have not completed the puzzle!</span>
+        <div class="how-to-play-selection">
+          <div id="restartButton" class="menu-btn game-btn-mg" onclick="replayHideMenu()">
+            <img src="assets/menu/replay-button.png" />
+          </div>
+        </div>
+      </div>
     </div>
+
     <ul id="menu"></ul>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
   </body>
   <script type="text/javascript" src="js/jigsaw.js"></script>
 </html>

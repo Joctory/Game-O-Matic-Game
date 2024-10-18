@@ -3,6 +3,8 @@
 const startButton = document.getElementById("startButton");
 const restartButton = document.getElementById("restartButton");
 const completeMenu = document.getElementById("completeMenu");
+const failMenu = document.getElementById("failMenu");
+const homebutton = document.getElementById("backTitle");
 
 let puzzle,
   autoStart,
@@ -129,9 +131,7 @@ class Side {
         */
     const coefx = puzzle.scalex;
     const coefy = puzzle.scaley;
-    this.scaledPoints = this.points.map(
-      (p) => new Point(p.x * coefx, p.y * coefy)
-    );
+    this.scaledPoints = this.points.map((p) => new Point(p.x * coefx, p.y * coefy));
   } //
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -147,16 +147,10 @@ class Side {
 
   drawPath(ctx, shiftx, shifty, withoutMoveTo) {
     if (!withoutMoveTo) {
-      ctx.moveTo(
-        this.scaledPoints[0].x + shiftx,
-        this.scaledPoints[0].y + shifty
-      );
+      ctx.moveTo(this.scaledPoints[0].x + shiftx, this.scaledPoints[0].y + shifty);
     }
     if (this.type == "d") {
-      ctx.lineTo(
-        this.scaledPoints[1].x + shiftx,
-        this.scaledPoints[1].y + shifty
-      );
+      ctx.lineTo(this.scaledPoints[1].x + shiftx, this.scaledPoints[1].y + shifty);
     } else {
       // edge zigzag
       for (let k = 1; k < this.scaledPoints.length - 1; k += 3) {
@@ -204,10 +198,7 @@ function twist0(side, ca, cb) {
 
   side.points = [
     seg0.p1,
-    new Point(
-      seg0.p1.x + (5 / 12) * dxh * 0.52,
-      seg0.p1.y + (5 / 12) * dyh * 0.52
-    ),
+    new Point(seg0.p1.x + (5 / 12) * dxh * 0.52, seg0.p1.y + (5 / 12) * dyh * 0.52),
     new Point(pa.x - (1 / 12) * dxv * 0.72, pa.y - (1 / 12) * dyv * 0.72),
     pa,
     new Point(pa.x + (1 / 12) * dxv * 0.72, pa.y + (1 / 12) * dyv * 0.72),
@@ -224,10 +215,7 @@ function twist0(side, ca, cb) {
     new Point(pe.x + (1 / 12) * dxv * 0.72, pe.y + (1 / 12) * dyv * 0.72),
     pe,
     new Point(pe.x - (1 / 12) * dxv * 0.72, pe.y - (1 / 12) * dyv * 0.72),
-    new Point(
-      seg0.p2.x - (5 / 12) * dxh * 0.52,
-      seg0.p2.y - (5 / 12) * dyh * 0.52
-    ),
+    new Point(seg0.p2.x - (5 / 12) * dxh * 0.52, seg0.p2.y - (5 / 12) * dyh * 0.52),
     seg0.p2,
   ];
   side.type = "z";
@@ -263,21 +251,7 @@ function twist1(side, ca, cb) {
   const pb = pointAt(alea(0.45, 0.55), alea(0.2, 0.3));
   const pc = pointAt(alea(0.65, 0.78), alea(-0.05, 0.05));
 
-  side.points = [
-    seg0.p1,
-    seg0.p1,
-    pa,
-    pa,
-    pa,
-    pb,
-    pb,
-    pb,
-    pc,
-    pc,
-    pc,
-    seg0.p2,
-    seg0.p2,
-  ];
+  side.points = [seg0.p1, seg0.p1, pa, pa, pa, pb, pb, pb, pc, pc, pc, seg0.p2, seg0.p2];
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
@@ -402,14 +376,10 @@ class PolyPiece {
     for (let k = 0; k < otherPoly.pieces.length; ++k) {
       this.pieces.push(otherPoly.pieces[k]);
       // watch leftmost, topmost... pieces
-      if (otherPoly.pieces[k].kx < this.pckxmin)
-        this.pckxmin = otherPoly.pieces[k].kx;
-      if (otherPoly.pieces[k].kx + 1 > this.pckxmax)
-        this.pckxmax = otherPoly.pieces[k].kx + 1;
-      if (otherPoly.pieces[k].ky < this.pckymin)
-        this.pckymin = otherPoly.pieces[k].ky;
-      if (otherPoly.pieces[k].ky + 1 > this.pckymax)
-        this.pckymax = otherPoly.pieces[k].ky + 1;
+      if (otherPoly.pieces[k].kx < this.pckxmin) this.pckxmin = otherPoly.pieces[k].kx;
+      if (otherPoly.pieces[k].kx + 1 > this.pckxmax) this.pckxmax = otherPoly.pieces[k].kx + 1;
+      if (otherPoly.pieces[k].ky < this.pckymin) this.pckymin = otherPoly.pieces[k].ky;
+      if (otherPoly.pieces[k].ky + 1 > this.pckymax) this.pckymax = otherPoly.pieces[k].ky + 1;
     } // for k
 
     // sort the pieces by increasing kx, ky
@@ -511,12 +481,7 @@ class PolyPiece {
     function edgeIsInTbEdges(kx, ky, edge) {
       let k;
       for (k = 0; k < tbEdges.length; k++) {
-        if (
-          kx == tbEdges[k].kx &&
-          ky == tbEdges[k].ky &&
-          edge == tbEdges[k].edge
-        )
-          return k; // found it
+        if (kx == tbEdges[k].kx && ky == tbEdges[k].ky && edge == tbEdges[k].edge) return k; // found it
       }
       return false; // not found
     } // function edgeIsInTbEdges
@@ -676,36 +641,17 @@ class PolyPiece {
       const srcx = pp.kx ? (pp.kx - 0.5) * puzzle.scalex : 0;
       const srcy = pp.ky ? (pp.ky - 0.5) * puzzle.scaley : 0;
 
-      const destx =
-        (pp.kx ? 0 : puzzle.scalex / 2) +
-        (pp.kx - this.pckxmin) * puzzle.scalex;
-      const desty =
-        (pp.ky ? 0 : puzzle.scaley / 2) +
-        (pp.ky - this.pckymin) * puzzle.scaley;
+      const destx = (pp.kx ? 0 : puzzle.scalex / 2) + (pp.kx - this.pckxmin) * puzzle.scalex;
+      const desty = (pp.ky ? 0 : puzzle.scaley / 2) + (pp.ky - this.pckymin) * puzzle.scaley;
 
       let w = 2 * puzzle.scalex;
       let h = 2 * puzzle.scaley;
-      if (srcx + w > puzzle.gameCanvas.width)
-        w = puzzle.gameCanvas.width - srcx;
-      if (srcy + h > puzzle.gameCanvas.height)
-        h = puzzle.gameCanvas.height - srcy;
+      if (srcx + w > puzzle.gameCanvas.width) w = puzzle.gameCanvas.width - srcx;
+      if (srcy + h > puzzle.gameCanvas.height) h = puzzle.gameCanvas.height - srcy;
 
-      this.ctx.drawImage(
-        puzzle.gameCanvas,
-        srcx,
-        srcy,
-        w,
-        h,
-        destx,
-        desty,
-        w,
-        h
-      );
+      this.ctx.drawImage(puzzle.gameCanvas, srcx, srcy, w, h, destx, desty, w, h);
 
-      this.ctx.translate(
-        puzzle.embossThickness / 2,
-        -puzzle.embossThickness / 2
-      );
+      this.ctx.translate(puzzle.embossThickness / 2, -puzzle.embossThickness / 2);
       this.ctx.lineWidth = puzzle.embossThickness;
       this.ctx.strokeStyle = "rgba(0, 0, 0, 0.35)";
       this.ctx.stroke(path);
@@ -793,8 +739,7 @@ class Puzzle {
     this.container.addEventListener("mousemove", (event) => {
       event.preventDefault();
       // do not accumulate move events in events queue - keep only current one
-      if (events.length && events[events.length - 1].event == "move")
-        events.pop();
+      if (events.length && events[events.length - 1].event == "move") events.pop();
       events.push({
         event: "move",
         position: this.relativeMouseCoordinates(event),
@@ -807,8 +752,7 @@ class Puzzle {
         if (event.touches.length != 1) return;
         let ev = event.touches[0];
         // do not accumulate move events in events queue - keep only current one
-        if (events.length && events[events.length - 1].event == "move")
-          events.pop();
+        if (events.length && events[events.length - 1].event == "move") events.pop();
         events.push({
           event: "move",
           position: this.relativeMouseCoordinates(ev),
@@ -852,9 +796,7 @@ class Puzzle {
              (computenxAndny aims at making relativeHeight as close as possible to 1)
         */
     this.relativeHeight =
-      this.srcImage.naturalHeight /
-      this.ny /
-      (this.srcImage.naturalWidth / this.nx);
+      this.srcImage.naturalHeight / this.ny / (this.srcImage.naturalWidth / this.nx);
 
     this.defineShapes({
       coeffDecentr: 0.12,
@@ -997,29 +939,19 @@ class Puzzle {
 
     // suppose image fits in height
     this.gameHeight = maxHeight;
-    this.gameWidth =
-      (this.gameHeight * this.srcImage.naturalWidth) /
-      this.srcImage.naturalHeight;
+    this.gameWidth = (this.gameHeight * this.srcImage.naturalWidth) / this.srcImage.naturalHeight;
 
     if (this.gameWidth > maxWidth) {
       // too wide, fits in width
       this.gameWidth = maxWidth;
-      this.gameHeight =
-        (this.gameWidth * this.srcImage.naturalHeight) /
-        this.srcImage.naturalWidth;
+      this.gameHeight = (this.gameWidth * this.srcImage.naturalHeight) / this.srcImage.naturalWidth;
     }
     /* get a scaled copy of the source picture into a canvas */
     //    this.gameCanvas = document.createElement('CANVAS');
     this.gameCanvas.width = this.gameWidth;
     this.gameCanvas.height = this.gameHeight;
     this.gameCtx = this.gameCanvas.getContext("2d");
-    this.gameCtx.drawImage(
-      this.srcImage,
-      0,
-      0,
-      this.gameWidth,
-      this.gameHeight
-    );
+    this.gameCtx.drawImage(this.srcImage, 0, 0, this.gameWidth, this.gameHeight);
 
     this.gameCanvas.classList.add("gameCanvas");
     this.gameCanvas.style.zIndex = 500;
@@ -1064,36 +996,20 @@ class Puzzle {
     /* limits the possible position for the coordinates of a piece, to prevent it from beeing out of the
         container */
 
-    rect.x0 = mmin(
-      mmax(rect.x0, -this.scalex / 2),
-      this.contWidth - 1.5 * this.scalex
-    );
-    rect.x1 = mmin(
-      mmax(rect.x1, -this.scalex / 2),
-      this.contWidth - 1.5 * this.scalex
-    );
-    rect.y0 = mmin(
-      mmax(rect.y0, -this.scaley / 2),
-      this.contHeight - 1.5 * this.scaley
-    );
-    rect.y1 = mmin(
-      mmax(rect.y1, -this.scaley / 2),
-      this.contHeight - 1.5 * this.scaley
-    );
+    rect.x0 = mmin(mmax(rect.x0, -this.scalex / 2), this.contWidth - 1.5 * this.scalex);
+    rect.x1 = mmin(mmax(rect.x1, -this.scalex / 2), this.contWidth - 1.5 * this.scalex);
+    rect.y0 = mmin(mmax(rect.y0, -this.scaley / 2), this.contHeight - 1.5 * this.scaley);
+    rect.y1 = mmin(mmax(rect.y1, -this.scaley / 2), this.contHeight - 1.5 * this.scaley);
   }
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   spreadInRectangle(rect) {
     this.limitRectangle(rect);
-    this.polyPieces.forEach((pp) =>
-      pp.moveTo(alea(rect.x0, rect.x1), alea(rect.y0, rect.y1))
-    );
+    this.polyPieces.forEach((pp) => pp.moveTo(alea(rect.x0, rect.x1), alea(rect.y0, rect.y1)));
   } // spreadInRectangle
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   spreadSetInRectangle(set, rect) {
     this.limitRectangle(rect);
-    set.forEach((pp) =>
-      pp.moveTo(alea(rect.x0, rect.x1), alea(rect.y0, rect.y1))
-    );
+    set.forEach((pp) => pp.moveTo(alea(rect.x0, rect.x1), alea(rect.y0, rect.y1)));
   } // spreadInRectangle
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -1220,14 +1136,9 @@ class Puzzle {
           preserving the previous order as much as possible
         */
     for (let k = this.polyPieces.length - 1; k > 0; --k) {
-      if (
-        this.polyPieces[k].pieces.length > this.polyPieces[k - 1].pieces.length
-      ) {
+      if (this.polyPieces[k].pieces.length > this.polyPieces[k - 1].pieces.length) {
         // swap pieces if not in right order
-        [this.polyPieces[k], this.polyPieces[k - 1]] = [
-          this.polyPieces[k - 1],
-          this.polyPieces[k],
-        ];
+        [this.polyPieces[k], this.polyPieces[k - 1]] = [this.polyPieces[k - 1], this.polyPieces[k]];
       }
     }
     // re-assign zIndex
@@ -1329,11 +1240,7 @@ let events = []; // queue for events
       if (state == 15 || state > 60) {
         // resize initial or final picture
         puzzle.getContainerSize();
-        fitImage(
-          tmpImage,
-          puzzle.contWidth * puzzlescale,
-          puzzle.contHeight * puzzlescale
-        );
+        fitImage(tmpImage, puzzle.contWidth * puzzlescale, puzzle.contHeight * puzzlescale);
       } else if (state >= 25) {
         // resize pieces
         puzzle.prevGameWidth = puzzle.gameWidth;
@@ -1342,19 +1249,11 @@ let events = []; // queue for events
         let reScale = puzzle.contWidth / puzzle.prevWidth;
         puzzle.polyPieces.forEach((pp) => {
           // compute new position : game centered homothety
-          let nx =
-            puzzle.contWidth / 2 - (puzzle.prevWidth / 2 - pp.x) * reScale;
-          let ny =
-            puzzle.contHeight / 2 - (puzzle.prevHeight / 2 - pp.y) * reScale;
+          let nx = puzzle.contWidth / 2 - (puzzle.prevWidth / 2 - pp.x) * reScale;
+          let ny = puzzle.contHeight / 2 - (puzzle.prevHeight / 2 - pp.y) * reScale;
           // enforce pieces to stay in game area
-          nx = mmin(
-            mmax(nx, -puzzle.scalex / 2),
-            puzzle.contWidth - 1.5 * puzzle.scalex
-          );
-          ny = mmin(
-            mmax(ny, -puzzle.scaley / 2),
-            puzzle.contHeight - 1.5 * puzzle.scaley
-          );
+          nx = mmin(mmax(nx, -puzzle.scalex / 2), puzzle.contWidth - 1.5 * puzzle.scalex);
+          ny = mmin(mmax(ny, -puzzle.scaley / 2), puzzle.contHeight - 1.5 * puzzle.scaley);
 
           pp.moveTo(nx, ny);
           pp.drawImage();
@@ -1380,11 +1279,7 @@ let events = []; // queue for events
         tmpImage = document.createElement("img");
         tmpImage.src = puzzle.srcImage.src;
         puzzle.getContainerSize();
-        fitImage(
-          tmpImage,
-          puzzle.contWidth * puzzlescale,
-          puzzle.contHeight * puzzlescale
-        );
+        fitImage(tmpImage, puzzle.contWidth * puzzlescale, puzzle.contHeight * puzzlescale);
         tmpImage.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.5)";
         puzzle.container.appendChild(tmpImage);
         state = 15;
@@ -1461,13 +1356,7 @@ let events = []; // queue for events
         /* evaluates if contact inside a PolyPiece, by decreasing z-index */
         for (let k = puzzle.polyPieces.length - 1; k >= 0; --k) {
           let pp = puzzle.polyPieces[k];
-          if (
-            pp.ctx.isPointInPath(
-              pp.path,
-              event.position.x - pp.x,
-              event.position.y - pp.y
-            )
-          ) {
+          if (pp.ctx.isPointInPath(pp.path, event.position.x - pp.x, event.position.y - pp.y)) {
             moving.pp = pp;
             moving.ppXInit = pp.x;
             moving.ppYInit = pp.y;
@@ -1525,23 +1414,16 @@ let events = []; // queue for events
       case 60: // winning
         puzzle.container.innerHTML = "";
         puzzle.getContainerSize();
-        fitImage(
-          tmpImage,
-          puzzle.contWidth * puzzlescale,
-          puzzle.contHeight * puzzlescale
-        );
+        fitImage(tmpImage, puzzle.contWidth * puzzlescale, puzzle.contHeight * puzzlescale);
         tmpImage.style.boxShadow = "4px 4px 4px rgba(0, 0, 0, 0.5)";
         //              tmpImage.style.top=(puzzle.polyPieces[0].y + puzzle.scaley / 2) / puzzle.contHeight * 100 + 50 + "%" ;
         //              tmpImage.style.left=(puzzle.polyPieces[0].x + puzzle.scalex / 2) / puzzle.contWidth * 100 + 50 + "%" ;
         tmpImage.style.left =
-          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) /
-            puzzle.contWidth) *
+          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) / puzzle.contWidth) *
             100 +
           "%";
         tmpImage.style.top =
-          ((puzzle.polyPieces[0].y +
-            puzzle.scaley / 2 +
-            puzzle.gameHeight / 2) /
+          ((puzzle.polyPieces[0].y + puzzle.scaley / 2 + puzzle.gameHeight / 2) /
             puzzle.contHeight) *
             100 +
           "%";
@@ -1553,7 +1435,7 @@ let events = []; // queue for events
 
         // menu.open();
         clearInterval(timer);
-        completeMenu.style.display = "flex";
+        showPreview(completeMenu);
 
       case 65: // wait for new number of pieces - of new picture
         if (event && event.event == "nbpieces") {
@@ -1577,22 +1459,20 @@ let events = []; // queue for events
 function startGame() {
   events.push({
     event: "nbpieces",
-    nbpieces: 6, //Number of puzzle pieces
+    nbpieces: 3, //Number of puzzle pieces
   });
   gameTimer();
-  startButton.style.display = "none";
-  document.getElementById("failMenu").style.display = "none";
   document.getElementById("forPuzzle").classList.remove("disabled");
 }
 
 function gameTimer() {
-  var sec = 60;
+  var sec = 1;
   timer = setInterval(function () {
     document.getElementById("g1timeleft").innerHTML = sec;
     sec--;
     if (sec < 0) {
       clearInterval(timer);
-      document.getElementById("failMenu").style.display = "flex";
+      showPreview(failMenu);
       document.getElementById("forPuzzle").classList.add("disabled");
     }
   }, 1000);
@@ -1643,5 +1523,36 @@ autoStart = isMiniature(); // used for nice miniature in CodePen
 loadInitialFile();
 requestAnimationFrame(animate);
 
+var overlay = document.getElementById("overlay");
 startButton.addEventListener("click", startGame);
 restartButton.addEventListener("click", startGame);
+homebutton.addEventListener("click", closeGame);
+
+var howtoplayDiv = document.getElementById("howtoplayDiv");
+
+function hidePreview() {
+  howtoplayDiv.classList.remove("active");
+  howtoplayDiv.classList.add("closed");
+  overlay.style.display = "none";
+}
+
+function replayHideMenu() {
+  failMenu.classList.remove("active");
+  failMenu.classList.add("closed");
+  overlay.style.display = "none";
+}
+
+function showPreview(div) {
+  div.classList.remove("closed");
+  div.classList.add("active");
+  overlay.style.display = "block";
+}
+
+function closeGame() {
+  window.top.location.reload();
+}
+
+document.addEventListener("DOMContentLoaded", (event) => {
+  overlay.style.display = "block";
+  howtoplayDiv.classList.add("active");
+});

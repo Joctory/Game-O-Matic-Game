@@ -1,6 +1,13 @@
 /* Start of Global */
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&display=swap");
 
 * {
+  font-family: "Fredoka", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1rem;
+
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
@@ -61,11 +68,33 @@ html {
   justify-content: space-between;
   align-items: center;
 
-  background-image: url("../assets/menu-bg.jpg");
+  /* background-image: url("../assets/menu-bg.jpg"); */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
   background-color: #266f9a;
+}
+
+.game-entry {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.game-entry img {
+  width: 15vh;
+}
+
+#entry-id {
+  position: absolute;
+  left: 51%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  color: #ffffff;
+  text-shadow: 0px -1px #363636;
 }
 
 .logo-main {
@@ -118,11 +147,18 @@ html {
 }
 
 .glide__slide {
-  background-image: url("../assets/menu/Box_Orange_Rounded.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
-  background-position: center;
+  background-position: bottom;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-preview-1 {
+  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+}
+
+.game-preview-2 {
+  background-image: url("../assets/menu/Box_Blue_Rounded.png");
 }
 
 .glide-control {
@@ -149,7 +185,7 @@ html {
   outline: inherit;
 }
 
-.control-btn {
+.control-btn:active {
   margin-top: 2px;
 }
 
@@ -202,14 +238,32 @@ html {
 }
 
 .game-selection-preview {
+  position: relative;
   width: 100%;
   height: 60vh;
   max-height: 450px;
-  padding: 20px;
+  padding: 15px;
   display: flex;
-  justify-content: center;
+  justify-content: space-around;
   align-items: center;
   flex-direction: column;
+}
+
+.game-title {
+  position: absolute;
+  top: 15px;
+  z-index: 5;
+}
+
+.game-title img {
+  width: 30vh;
+}
+
+.game-preview-animation {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 .selection-main {
@@ -222,25 +276,34 @@ html {
 }
 
 .play-btn {
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  margin-bottom: 20px;
+  bottom: 20px;
+}
+
+.play-btn img {
+  width: 20vh;
+}
+
+.game-btn-mg:active {
+  transform: translateY(2px);
 }
 
 /* In Game CSS */
 .back-button {
+  width: 35px;
   position: absolute;
   top: 20px;
   left: 20px;
-  background-color: #bcfffb;
-  text-align: center;
-  padding: 5px 10px;
-  border-radius: 20px;
   cursor: pointer;
   z-index: 19;
+}
+
+.back-button img {
+  width: 100%;
 }
 
 .mini-game-container {
@@ -262,12 +325,46 @@ html {
   left: 50%;
   transform: translate(-50%, -50%);
 
-  background-color: white;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 15px;
   z-index: 20;
+  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.game-exit-inner {
+  width: 100%;
+  height: 40vh;
+  max-height: 300px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.ingame-title {
+  font-size: 4vh;
   text-align: center;
+  color: #fff;
+}
+
+.game-exit-selection {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.exit-btn {
+  width: 45%;
+  cursor: pointer;
+}
+
+.exit-btn img {
+  width: 100%;
 }
 
 .game-exit.active {
@@ -275,6 +372,88 @@ html {
 }
 
 .game-exit.closed {
+  animation: popDown 0.25s ease forwards;
+}
+
+/* Game 1 */
+/* How to play Container */
+.how-to-play {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  visibility: hidden;
+  opacity: 0;
+
+  width: 80%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  padding: 15px;
+  z-index: 20;
+  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  background-position: bottom;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.how-to-play-inner {
+  position: relative;
+  width: 100%;
+  height: 40vh;
+  max-height: 300px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.how-to-play-img {
+  position: absolute;
+  top: -60px;
+
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.how-to-play-img img {
+  width: 70%;
+}
+
+.how-to-play-inner .ingame-title {
+  font-size: 3.3vh;
+  text-align: center;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.how-to-play-selection {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.exit-btn {
+  width: 45%;
+  cursor: pointer;
+}
+
+.exit-btn img {
+  width: 100%;
+}
+
+.how-to-play.active {
+  animation: popUp 0.25s ease forwards;
+}
+
+.how-to-play.closed {
   animation: popDown 0.25s ease forwards;
 }
 
@@ -308,6 +487,11 @@ html {
     opacity: 1;
     visibility: visible;
   }
+  99% {
+    transform: translate(-50%, -50%) scale(0.8);
+    opacity: 0;
+    visibility: visible;
+  }
   100% {
     transform: translate(-50%, -50%) scale(0.8);
     opacity: 0;
@@ -317,7 +501,12 @@ html {
 
 @media screen and (max-width: 450px) {
   .game-selection-preview {
-    height: 43vh;
+    height: 50vh;
+  }
+
+  .menu-close-btn {
+    width: 35px;
+    right: -5px;
   }
 }
 

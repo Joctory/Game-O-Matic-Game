@@ -5,19 +5,21 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>AXS Game-O-Matic</title>
     <link
       rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css"
-    />
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
 
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
   </head>
   <body>
     <div class="game-container">
       <div id="home-screen" class="menu-container">
+        <div class="game-entry">
+          <img src="assets/menu/trial-holder.png" />
+          <span id="entry-id">1</span>
+        </div>
         <div class="logo-main">
           <!-- <img src="assets/logo.png" class="logo-img" /> -->
         </div>
@@ -34,48 +36,42 @@
         </div>
       </div>
       <div id="game-preview" class="game-selection">
-        <div
-          id="preview-close"
-          class="menu-close-btn game-btn"
-          onclick="hidePreview()"
-        >
+        <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview()">
           <img src="assets/menu/close-btn.png" />
         </div>
         <div class="glide">
           <div class="glide__track" data-glide-el="track">
             <ul class="glide__slides">
-              <li class="glide__slide">
+              <li class="glide__slide game-preview-1">
                 <div class="game-selection-preview">
-                  <dotlottie-player
-                    src="https://lottie.host/44722281-c4ac-46b8-b8eb-4fce479b7b98/oOs9KYbTrG.json"
-                    background="transparent"
-                    speed="1"
-                    style="width: 70%"
-                    loop
-                    autoplay
-                  ></dotlottie-player>
-                  <div
-                    class="play-btn game-btn"
-                    onclick="menustartGame('game1')"
-                  >
+                  <div class="game-title"><img src="assets/menu/flip-game-title.png" /></div>
+                  <div class="game-preview-animation">
+                    <dotlottie-player
+                      src="https://lottie.host/44722281-c4ac-46b8-b8eb-4fce479b7b98/oOs9KYbTrG.json"
+                      background="transparent"
+                      speed="1"
+                      style="width: 70%"
+                      loop
+                      autoplay></dotlottie-player>
+                  </div>
+                  <div class="play-btn game-btn-mg" onclick="menustartGame('game1')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
               </li>
-              <li class="glide__slide">
+              <li class="glide__slide game-preview-2">
                 <div class="game-selection-preview">
-                  <dotlottie-player
-                    src="https://lottie.host/9453a142-92a9-4dfb-97bc-aacc38c1b141/VY2rbaEvaC.lottie"
-                    background="transparent"
-                    speed="1"
-                    style="width: 70%"
-                    loop
-                    autoplay
-                  ></dotlottie-player>
-                  <div
-                    class="play-btn game-btn"
-                    onclick="menustartGame('game2')"
-                  >
+                  <div class="game-title"><img src="assets/menu/jigsaw-game-title.png" /></div>
+                  <div class="game-preview-animation">
+                    <dotlottie-player
+                      src="https://lottie.host/9453a142-92a9-4dfb-97bc-aacc38c1b141/VY2rbaEvaC.lottie"
+                      background="transparent"
+                      speed="1"
+                      style="width: 60%"
+                      loop
+                      autoplay></dotlottie-player>
+                  </div>
+                  <div class="play-btn game-btn-mg" onclick="menustartGame('game2')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
@@ -99,14 +95,18 @@
 
       <!-- Game 1 -->
       <div id="game1" class="mini-game-container">
-        <button onclick="confirmExit()" class="back-button">Exit Game</button>
+        <div onclick="confirmExit()" class="back-button game-btn-mg">
+          <img src="assets/menu/exit-game.png" />
+        </div>
         <!-- Game 1 HTML elements -->
         <iframe src="" width="100%" height="100%" frameborder="0"></iframe>
       </div>
 
       <!-- Game 2 -->
       <div id="game2" class="mini-game-container">
-        <button onclick="confirmExit()" class="back-button">Exit Game</button>
+        <div onclick="confirmExit()" class="back-button game-btn-mg">
+          <img src="assets/menu/exit-game.png" />
+        </div>
         <h2>Game 2</h2>
         <!-- Game 2 HTML elements -->
         <iframe src="" width="100%" height="100%" frameborder="0"></iframe>
@@ -114,19 +114,23 @@
 
       <!-- Game Exit Overlay -->
       <div id="game-exit" class="game-exit">
-        <h3>Are you confirm to exit?</h3>
-        <div onclick="exitGame()" class="exit-btn">Yes</div>
-        <div onclick="noExitGame()" class="exit-btn">No</div>
+        <div class="game-exit-inner">
+          <h3 class="ingame-title">Are you<br />confirm to exit?</h3>
+          <div class="game-exit-selection">
+            <div onclick="exitGame()" class="exit-btn game-btn-mg">
+              <img src="assets/menu/exit-red.png" />
+            </div>
+            <div onclick="noExitGame()" class="exit-btn game-btn-mg">
+              <img src="assets/menu/resume-button.png" />
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </body>
-  <script
-    type="text/javascript"
-    src="https://cdn.jsdelivr.net/npm/@glidejs/glide"
-  ></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
   <script
     src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-    type="module"
-  ></script>
+    type="module"></script>
   <script type="text/javascript" src="js/menu.js"></script>
 </html>
