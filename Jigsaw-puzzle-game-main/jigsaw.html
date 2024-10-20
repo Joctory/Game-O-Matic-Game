@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta
+      name="viewport"
+      charset="UTF-8"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
+    <link rel="stylesheet" type="text/css" href="css/menu.css" />
+    <link rel="stylesheet" type="text/css" href="css/jigsaw.css" />
+    <title>Jigsaw Puzzle</title>
+  </head>
+  <body>
+    <!-- How to play -->
+    <div id="howtoplayDiv" class="pop-container">
+      <div class="pop-container-inner">
+        <div class="pop-container-img">
+          <img src="assets/menu/how-to-play-blue.png" />
+        </div>
+        <h3 class="ingame-title">
+          Sort pieces by color, shape, or edges, start with the corners and
+          edges, and match pieces to complete the picture.
+        </h3>
+        <div class="pop-container-selection">
+          <div
+            id="startButton"
+            class="menu-btn game-btn-mg"
+            onclick="hidePreview()"
+          >
+            <img src="assets/menu/start-button.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div id="forPuzzle"></div>
+    <div id="timer">Time Left: <span id="g1timeleft">60</span></div>
+
+    <!-- Level Complete -->
+    <div id="completeMenu" class="pop-container">
+      <div class="pop-container-inner">
+        <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
+        <h3 class="ingame-title">Game Completed!</h3>
+        <span class="ingame-title">
+          Congratulation! You have completed the puzzle!<br />You have earn one
+          entry
+        </span>
+        <div class="pop-container-selection">
+          <div
+            id="backTitle"
+            class="menu-btn game-btn-mg"
+            onclick="hidePreview()"
+          >
+            <img src="assets/menu/home-button.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Level Fail -->
+    <div id="failMenu" class="pop-container">
+      <div class="pop-container-inner">
+        <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
+        <h3 class="ingame-title">Game Fail!</h3>
+        <span class="ingame-title"
+          >Time's Up! You have not completed the puzzle!</span
+        >
+        <div class="pop-container-selection">
+          <div
+            id="restartButton"
+            class="menu-btn game-btn-mg"
+            onclick="replayHideMenu()"
+          >
+            <img src="assets/menu/replay-button.png" />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <ul id="menu"></ul>
+
+    <!-- Overlay -->
+    <div class="overlay" id="overlay"></div>
+  </body>
+  <script type="text/javascript" src="js/jigsaw.js"></script>
+</html>
