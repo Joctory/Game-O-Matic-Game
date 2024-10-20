@@ -1,5 +1,7 @@
-body {
+.game-one-container {
   background-color: #266f9a;
+  height: 100%;
+  width: 100%;
 }
 
 #menu {
@@ -55,23 +57,4 @@ body {
   display: none;
   overflow: hidden;
   position: absolute;
-}
-
-.menu-btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 3;
-  cursor: pointer;
-}
-
-.menu-btn img {
-  width: 50%;
-}
-
-#timer {
-  position: absolute;
-  top: 5%;
-  left: 50%;
-  transform: translateX(-50%);
 }

@@ -1,9 +1,9 @@
-body {
+.game-two-container {
   background-color: #dadada;
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh;
+  height: 100%;
   margin: 0px;
   overflow: hidden;
   -webkit-user-select: none;
@@ -11,15 +11,16 @@ body {
 }
 
 #Grid {
+  width: 90%;
   display: grid;
   grid-template-columns: auto auto auto auto;
-  gap: 2vmax;
+  gap: 1vmax;
 }
 
 .Card {
-  width: 20vw;
+  width: 100%;
   max-width: 190px;
-  height: 28vh;
+  height: 22vh;
   perspective: 100vw;
 }
 
@@ -36,11 +37,7 @@ body {
 
 .Back {
   background: rgb(180, 81, 151);
-  background: linear-gradient(
-    90deg,
-    rgba(180, 81, 151, 1) 0%,
-    rgba(96, 69, 145, 1) 100%
-  );
+  background: linear-gradient(90deg, rgba(180, 81, 151, 1) 0%, rgba(96, 69, 145, 1) 100%);
   background-image: url("../assets/game-assets/flipback.jpg");
   background-repeat: no-repeat;
   background-size: cover;

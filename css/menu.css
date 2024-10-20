@@ -19,7 +19,22 @@
   -o-user-drag: none;
   user-drag: none;
 
+  -webkit-tap-highlight-color: transparent;
+
   box-sizing: border-box;
+}
+
+img {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  pointer-events: none;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;
 }
 
 body,
@@ -42,6 +57,7 @@ html {
 
 .game-btn img {
   width: 55%;
+  max-width: 200px;
   cursor: pointer;
 }
 
@@ -57,6 +73,7 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
 }
 
 .menu-container {
@@ -88,7 +105,11 @@ html {
   width: 15vh;
 }
 
-#entry-id {
+.timerspan,
+#entry-id,
+#entry-redeem-id,
+#entry-redeem-g1-id,
+#entry-redeem-g2-id {
   position: absolute;
   left: 51%;
   top: 50%;
@@ -173,6 +194,20 @@ html {
   transform: translate(-50%, -50%);
 }
 
+.glide__bullet {
+  padding: 5px;
+  border-radius: 100%;
+}
+
+.glide__bullet.glide__bullet--active {
+  background-color: #369eda;
+}
+
+/* Redeem Menu */
+.entry-redeem-main {
+  position: relative;
+}
+
 /* Control Button Slide */
 .control-btn {
   position: absolute;
@@ -224,17 +259,25 @@ html {
 }
 
 .mini-game-container {
-  display: none;
+  display: block;
   position: fixed;
-  top: 0;
-  left: 0;
+  visibility: hidden;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
   background-color: white;
   z-index: 15;
 }
+
 .mini-game-container.active {
-  display: block;
+  visibility: visible;
+  opacity: 1;
+}
+
+.mini-game-container.closed {
+  animation: popDown 0.25s ease forwards;
 }
 
 .game-selection-preview {
@@ -306,11 +349,6 @@ html {
   width: 100%;
 }
 
-.mini-game-container {
-  position: absolute;
-  top: 0;
-}
-
 /* In Game Exit */
 .game-exit {
   display: flex;
@@ -349,6 +387,13 @@ html {
   font-size: 4vh;
   text-align: center;
   color: #fff;
+  margin: 0;
+}
+
+.sec-title {
+  font-size: 3vh;
+  text-align: center;
+  color: #fff;
 }
 
 .game-exit-selection {
@@ -375,15 +420,20 @@ html {
   animation: popDown 0.25s ease forwards;
 }
 
+#howtoplayDivg1 .pop-container-inner,
+#howtoplayDivg2 .pop-container-inner {
+  padding-top: 5vh;
+}
+
 /* Game 1 */
 /* How to play Container */
-.how-to-play {
+.pop-container {
   display: flex;
   justify-content: center;
   align-items: center;
   visibility: hidden;
   opacity: 0;
-
+  border-radius: 50px;
   width: 80%;
   position: absolute;
   top: 50%;
@@ -391,7 +441,7 @@ html {
   transform: translate(-50%, -50%);
 
   padding: 15px;
-  z-index: 20;
+  z-index: 25;
   background-image: url("../assets/menu/Box_Orange_Rounded.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
@@ -399,7 +449,7 @@ html {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.how-to-play-inner {
+.pop-container-inner {
   position: relative;
   width: 100%;
   height: 40vh;
@@ -411,7 +461,7 @@ html {
   flex-direction: column;
 }
 
-.how-to-play-img {
+.pop-container-img {
   position: absolute;
   top: -60px;
 
@@ -421,19 +471,19 @@ html {
   align-items: center;
 }
 
-.how-to-play-img img {
+.pop-container-img img {
   width: 70%;
 }
 
-.how-to-play-inner .ingame-title {
-  font-size: 3.3vh;
+.pop-container-inner .ingame-title {
+  font-size: 1.5rem;
   text-align: center;
   color: #fff;
   padding-left: 10px;
   padding-right: 10px;
 }
 
-.how-to-play-selection {
+.pop-container-selection {
   width: 100%;
   display: flex;
   justify-content: space-around;
@@ -449,12 +499,173 @@ html {
   width: 100%;
 }
 
-.how-to-play.active {
+.pop-container.active {
   animation: popUp 0.25s ease forwards;
 }
 
-.how-to-play.closed {
+.pop-container.closed {
   animation: popDown 0.25s ease forwards;
+}
+
+.menu-btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 3;
+  cursor: pointer;
+}
+
+.menu-btn img {
+  width: 50%;
+}
+
+.timer-main {
+  position: absolute;
+  top: 10px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5;
+}
+
+.timer-main img {
+  width: 15vh;
+}
+
+.pop-container .game-entry {
+  top: 0;
+}
+
+/* Ready Go Screen */
+#readyGoScreen {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: none;
+  background-color: #00000078;
+  z-index: 999;
+}
+
+#readyText {
+  color: #fff;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 30px;
+  text-align: center;
+}
+
+/* Loader */
+.overlay-loader {
+  justify-content: center;
+  align-items: center;
+}
+
+.loader {
+  width: 45px;
+  height: 30px;
+  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%, linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
+  background-repeat: no-repeat;
+  position: relative;
+  clip-path: inset(-100% 0 0 0);
+  animation: l2-0 2s infinite steps(4);
+}
+.loader::before,
+.loader::after {
+  content: "";
+  position: absolute;
+  inset: -50% 0 50%;
+  background: linear-gradient(#00e622 0 0) 0 0 / calc(2 * 100% / 3) 50%,
+    linear-gradient(#00e622 0 0) 100% 100% / calc(2 * 100% / 3) 50%;
+  background-repeat: no-repeat;
+  animation: inherit;
+  animation-name: l2-1;
+}
+.loader::after {
+  inset: -100% 0 100%;
+  background: linear-gradient(#e50021 0 0) 0 0/100% 50%, linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
+  background-repeat: no-repeat;
+  animation-name: l2-2;
+}
+@keyframes l2-0 {
+  0% {
+    transform: translateY(-250%);
+    clip-path: inset(100% 0 0 0);
+  }
+  25%,
+  100% {
+    transform: translateY(0);
+    clip-path: inset(-100% 0 0 0);
+  }
+}
+@keyframes l2-1 {
+  0%,
+  25% {
+    transform: translateY(-250%);
+  }
+  50%,
+  100% {
+    transform: translateY(0);
+  }
+}
+@keyframes l2-2 {
+  0%,
+  50% {
+    transform: translateY(-250%);
+  }
+  75%,
+  100% {
+    transform: translateY(0);
+  }
+}
+
+/* Game loader */
+#game-overlay-loader {
+  background: #266f9a;
+  z-index: 99;
+}
+
+.game-loader {
+  width: 90px;
+  height: 24px;
+  padding: 2px 0;
+  box-sizing: border-box;
+  display: flex;
+  animation: l5-0 3s infinite steps(6);
+  background: linear-gradient(#266f9a 0 0) 0 0/0% 100% no-repeat,
+    radial-gradient(circle 3px, #eeee89 90%, #0000) 0 0/20% 100% #266f9a;
+  overflow: hidden;
+}
+.game-loader::before {
+  content: "";
+  width: 20px;
+  transform: translate(-100%);
+  border-radius: 50%;
+  background: #ffff2d;
+  animation: l5-1 0.25s 0.153s infinite steps(5) alternate, l5-2 3s infinite linear;
+}
+@keyframes l5-1 {
+  0% {
+    clip-path: polygon(50% 50%, 100% 0, 100% 0, 0 0, 0 100%, 100% 100%, 100% 100%);
+  }
+  100% {
+    clip-path: polygon(50% 50%, 100% 65%, 100% 0, 0 0, 0 100%, 100% 100%, 100% 35%);
+  }
+}
+@keyframes l5-2 {
+  100% {
+    transform: translate(90px);
+  }
+}
+@keyframes l5-0 {
+  100% {
+    background-size: 120% 100%, 20% 100%;
+  }
 }
 
 /* Animation */
