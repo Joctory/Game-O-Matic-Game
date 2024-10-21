@@ -5,10 +5,11 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>AXS Game-O-Matic</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <link rel="stylesheet" type="text/css" href="css/jigsaw.css" />
     <link rel="stylesheet" type="text/css" href="css/flip.css" />
@@ -38,7 +39,10 @@
 
       <!-- Game Selection -->
       <div id="game-preview" class="game-selection">
-        <div id="preview-close" class="menu-close-btn game-btn" onclick="hideGamePreview(gamePreview)">
+        <div
+          id="preview-close"
+          class="menu-close-btn game-btn"
+          onclick="hideGamePreview(gamePreview)">
           <img src="assets/menu/close-btn.png" />
         </div>
         <div class="glide">
@@ -47,19 +51,21 @@
               <li class="glide__slide game-preview-1">
                 <div class="game-selection-preview">
                   <div class="game-title">
-                    <img src="assets/menu/flip-game-title.png" />
+                    <img src="assets/menu/jigsaw-game-title.png" />
                   </div>
                   <div class="game-preview-animation">
                     <dotlottie-player
-                      src="https://lottie.host/44722281-c4ac-46b8-b8eb-4fce479b7b98/oOs9KYbTrG.json"
+                      src="https://lottie.host/38d59038-3424-4160-b9a8-2c0e11335159/bIbxb7419b.lottie"
                       background="transparent"
                       speed="1"
-                      style="width: 70%"
+                      style="width: 60%"
                       loop
-                      autoplay
-                    ></dotlottie-player>
+                      autoplay></dotlottie-player>
                   </div>
-                  <div id="game1selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game1')">
+                  <div
+                    id="game1selectbutton"
+                    class="play-btn game-btn-mg"
+                    onclick="menustartGame('game1')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
@@ -67,19 +73,21 @@
               <li class="glide__slide game-preview-2">
                 <div class="game-selection-preview">
                   <div class="game-title">
-                    <img src="assets/menu/jigsaw-game-title.png" />
+                    <img src="assets/menu/flip-game-title.png" />
                   </div>
                   <div class="game-preview-animation">
                     <dotlottie-player
-                      src="https://lottie.host/9453a142-92a9-4dfb-97bc-aacc38c1b141/VY2rbaEvaC.lottie"
+                      src="https://lottie.host/16c6283e-41ff-4682-9184-99aa9d8033d2/DyqfXFoXJc.lottie"
                       background="transparent"
                       speed="1"
                       style="width: 60%"
                       loop
-                      autoplay
-                    ></dotlottie-player>
+                      autoplay></dotlottie-player>
                   </div>
-                  <div id="game2selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game2')">
+                  <div
+                    id="game2selectbutton"
+                    class="play-btn game-btn-mg"
+                    onclick="menustartGame('game2')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
@@ -123,11 +131,14 @@
                 <img src="assets/menu/how-to-play-blue.png" />
               </div>
               <h3 class="ingame-title">
-                Sort pieces by color, shape, or edges, start with the corners and edges, and match pieces to complete
-                the picture.
+                Sort pieces by color, shape, or edges, start with the corners and edges, and match
+                pieces to complete the picture.
               </h3>
               <div class="pop-container-selection">
-                <div id="startButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg1)">
+                <div
+                  id="startButtong1"
+                  class="menu-btn game-btn-mg"
+                  onclick="hidePreviewInGame(howtoplayDivg1)">
                   <img src="assets/menu/start-button.png" />
                 </div>
               </div>
@@ -161,7 +172,10 @@
               <h3 class="ingame-title">Game Fail!</h3>
               <span class="ingame-title">Time's Up! You have not completed the puzzle!</span>
               <div class="pop-container-selection">
-                <div id="restartButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug1)">
+                <div
+                  id="restartButtong1"
+                  class="menu-btn game-btn-mg"
+                  onclick="hidePreviewInGame(failMenug1)">
                   <img src="assets/menu/replay-button.png" />
                 </div>
               </div>
@@ -244,11 +258,14 @@
               <img src="assets/menu/how-to-play-blue.png" />
             </div>
             <h3 class="ingame-title">
-              Uncover two matching symbols at once to eliminate them from the game. Beat the clock to eliminate all
-              cards as fast as you can and win!
+              Uncover two matching symbols at once to eliminate them from the game. Beat the clock
+              to eliminate all cards as fast as you can and win!
             </h3>
             <div class="pop-container-selection">
-              <div id="startButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg2)">
+              <div
+                id="startButtong2"
+                class="menu-btn game-btn-mg"
+                onclick="hidePreviewInGame(howtoplayDivg2)">
                 <img src="assets/menu/start-button.png" />
               </div>
             </div>
@@ -282,7 +299,10 @@
             <h3 class="ingame-title">Game Fail!</h3>
             <span class="ingame-title">Time's Up! You have not completed the puzzle!</span>
             <div class="pop-container-selection">
-              <div id="restartButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug2)">
+              <div
+                id="restartButtong2"
+                class="menu-btn game-btn-mg"
+                onclick="hidePreviewInGame(failMenug2)">
                 <img src="assets/menu/replay-button.png" />
               </div>
             </div>
@@ -323,7 +343,9 @@
             <img src="assets/menu/trial-holder.png" />
             <span id="entry-redeem-id">0</span>
           </div>
-          <span id="confirmRedeemSText">Do not click redeem button by yourself! It will loses all your entries!</span>
+          <span id="confirmRedeemSText"
+            >Do not click redeem button by yourself! It will loses all your entries!</span
+          >
           <div class="pop-container-selection two-button">
             <div class="exit-btn game-btn-mg" onclick="hidePreview(redeemMenu)">
               <img src="assets/menu/exit-red.png" />
@@ -337,7 +359,10 @@
 
       <!-- Confirm Redeem -->
       <div id="confirmRedeemMenu" class="pop-container">
-        <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(confirmRedeemMenu)">
+        <div
+          id="preview-close"
+          class="menu-close-btn game-btn"
+          onclick="hidePreview(confirmRedeemMenu)">
           <img src="assets/menu/close-btn.png" />
         </div>
         <div class="pop-container-inner">
@@ -372,7 +397,9 @@
     </div>
   </body>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  <script
+    src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+    type="module"></script>
   <script type="text/javascript" src="js/flip.js"></script>
   <script type="text/javascript" src="js/jigsaw.js"></script>
   <script type="text/javascript" src="js/menu.js"></script>

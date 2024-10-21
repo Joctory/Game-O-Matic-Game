@@ -39,18 +39,18 @@ function showGameSelectionPreview(div) {
 
   if (game1com == 1) {
     game1selectbutton.classList.add("disabled");
-    game1selectbutton.querySelector("img").src = "../assets/menu/completed-button.png";
+    game1selectbutton.querySelector("img").src = "assets/menu/completed-button.png";
   } else {
     game1selectbutton.classList.remove("disabled");
-    game1selectbutton.querySelector("img").src = "../assets/menu/select-button.png";
+    game1selectbutton.querySelector("img").src = "assets/menu/select-button.png";
   }
 
   if (game2com == 1) {
     game2selectbutton.classList.add("disabled");
-    game2selectbutton.querySelector("img").src = "../assets/menu/completed-button.png";
+    game2selectbutton.querySelector("img").src = "assets/menu/completed-button.png";
   } else {
     game2selectbutton.classList.remove("disabled");
-    game2selectbutton.querySelector("img").src = "../assets/menu/select-button.png";
+    game2selectbutton.querySelector("img").src = "assets/menu/select-button.png";
   }
 }
 
@@ -110,7 +110,8 @@ function showRedeemMenu(div) {
     confirmRedeemButton.style.display = "none";
     confirmRedeemSText.style.display = "none";
   } else {
-    confirmRedeemText.innerHTML = "Are you ready to redeem the rewards? Show this screen to our staff!";
+    confirmRedeemText.innerHTML =
+      "Are you ready to redeem the rewards? Show this screen to our staff!";
     confirmRedeemButton.style.display = "block";
     confirmRedeemSText.style.display = "block";
   }

@@ -63,9 +63,12 @@ function start() {
     // document.getElementById("Front-" + i).innerText = c;
     cards.splice(r, 1);
   }
-  document.getElementById("Grid").classList.remove("disabled");
 
-  gameTimerg2();
+  readyAndGoScreen();
+  setTimeout(() => {
+    document.getElementById("Grid").classList.remove("disabled");
+    gameTimerg2();
+  }, 1000);
 }
 
 function click(e) {
