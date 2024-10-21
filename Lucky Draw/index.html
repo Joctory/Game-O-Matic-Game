@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>AXS Lucky Draw</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/app.css" />
+  </head>
+
+  <body>
+    <video autoplay muted loop id="background-video">
+      <source src="assets/lucky_draw_bd.mp4" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <div class="container">
+      <div class="prize-title-holder">
+        <div class="prize-title-container">
+          <h3 class="prize-title-main">Welcome to AXS Lucky Draw!</h3>
+        </div>
+      </div>
+      <div class="slot-main">
+        <div class="slotwrapper" id="example2">
+          <ul class="machine-left">
+            <li><img src="assets/fold-bag.jpg" /></li>
+            <li><img src="assets/Whiteboards.jpg" /></li>
+            <li><img src="assets/Portable Fans.jpg" /></li>
+            <li><img src="assets/TADA Vouchers.jpg" /></li>
+          </ul>
+          <ul class="machine-center">
+            <li><img src="assets/fold-bag.jpg" /></li>
+            <li><img src="assets/Whiteboards.jpg" /></li>
+            <li><img src="assets/Portable Fans.jpg" /></li>
+            <li><img src="assets/TADA Vouchers.jpg" /></li>
+          </ul>
+          <ul class="machine-right">
+            <li><img src="assets/fold-bag.jpg" /></li>
+            <li><img src="assets/Whiteboards.jpg" /></li>
+            <li><img src="assets/Portable Fans.jpg" /></li>
+            <li><img src="assets/TADA Vouchers.jpg" /></li>
+          </ul>
+        </div>
+        <div class="spin-button-container">
+          <div class="button-wrap">
+            <button type="button" id="btn-spin" type="button">SPIN</button>
+          </div>
+        </div>
+      </div>
+      <div class="setting-btn" id="setting-btn"><img src="/assets/logo.png" /></div>
+      <div class="sm-setting">
+        <div class="sm-setting-inner">
+          <div class="item-input">
+            <input type="text" id="item-name" placeholder="Item Name" />
+            <input type="number" id="item-probability" placeholder="Probability" step="0.01" min="0" max="1" />
+            <button id="add-item">Add Item</button>
+          </div>
+        </div>
+        <ul id="item-list"></ul>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="js/slotmachine.js"></script>
+
+    <script type="text/javascript">
+      // Existing items array with name included
+      const items = [
+        { value: 1, name: "Foldable Bags", probability: 0.25 },
+        { value: 2, name: "Whiteboards", probability: 0.4 },
+        { value: 3, name: "Portable Fans", probability: 0.1 },
+        { value: 4, name: "TADA Vouchers", probability: 0.25 },
+      ];
+
+      let editIndex = null; // To track the index of the item being edited
+
+      // Function to render items in the list
+      function renderItems() {
+        const itemList = $("#item-list");
+        itemList.empty();
+        items.forEach((item, index) => {
+          itemList.append(`
+            <li>
+              Name: ${item.name}, Probability: ${item.probability} 
+              <button class="edit-item" data-index="${index}">Edit</button>
+              <button class="remove-item" data-index="${index}">Remove</button>
+            </li>
+          `);
+        });
+      }
+
+      // Add item event
+      $("#add-item").click(function () {
+        const name = $("#item-name").val(); // Get the name from the input
+        const probability = parseFloat($("#item-probability").val());
+        if (name && !isNaN(probability) && probability >= 0) {
+          const newValue = items.length > 0 ? Math.max(...items.map((item) => item.value)) + 1 : 1; // Increment value
+          if (editIndex !== null) {
+            // Update existing item
+            items[editIndex] = {
+              value: items[editIndex].value,
+              name,
+              probability,
+            }; // Keep the original value
+            editIndex = null; // Reset edit index after updating
+          } else {
+            // Add new item
+            items.push({ value: newValue, name, probability });
+          }
+          renderItems();
+          $("#item-name").val(""); // Clear name input field
+          $("#item-probability").val(""); // Clear probability input field
+        }
+      });
+
+      // Edit item event
+      $(document).on("click", ".edit-item", function () {
+        editIndex = $(this).data("index");
+        const item = items[editIndex];
+        $("#item-name").val(item.name); // Populate name input field
+        $("#item-probability").val(item.probability);
+      });
+
+      // Remove item event
+      $(document).on("click", ".remove-item", function () {
+        const index = $(this).data("index");
+        items.splice(index, 1);
+        renderItems();
+      });
+
+      // Initial render
+      renderItems();
+
+      // Function to select an item based on normalized probability
+      function selectItemBasedOnProbability() {
+        // Calculate the total probability
+        const totalProbability = items.reduce((sum, item) => sum + item.probability, 0);
+
+        // Normalize probabilities if total is not 1
+        const normalizedItems = items.map((item) => ({
+          ...item,
+          probability: item.probability / totalProbability, // Normalize each item's probability
+        }));
+
+        const randomValue = Math.random(); // Generate a random value between 0 and 1
+
+        let cumulativeProbability = 0;
+        for (const item of normalizedItems) {
+          cumulativeProbability += item.probability;
+          if (randomValue <= cumulativeProbability) {
+            return item; // Return the entire item object
+          }
+        }
+
+        // Fallback to the last item if no selection is made (shouldn't happen if probabilities sum to 1)
+        return normalizedItems[normalizedItems.length - 1];
+      }
+
+      var sound = new Audio("ringtones/spinning.mp3");
+      var ding = new Audio("ringtones/ding.wav");
+      // Loop of playing sound
+      sound.addEventListener(
+        "ended",
+        function () {
+          this.currentTime = 0;
+          this.play();
+        },
+        false
+      );
+
+      function generateRandomNumber() {
+        return Math.floor(Math.random() * items.length);
+      }
+
+      $("#btn-spin").click(function () {
+        const selectedItem = selectItemBasedOnProbability(); // Get the entire item object
+        const prizeTitle = $("#prize-title");
+        const prizeDiv = $(".prize-title-main");
+
+        prizeDiv.html("Spin started! Good Luck!");
+
+        console.log("(" + selectedItem.value + ")" + selectedItem.name); // Log the selected item value
+
+        sound.play(); // Start play the sound after click button
+        $("#example2 ul").playSpin({
+          endNum: [selectedItem.value, generateRandomNumber(), selectedItem.value],
+          time: 3000,
+          stopSeq: "leftToRight",
+          onEnd: function () {
+            ding.play(); // Play ding after each number is stopped
+          },
+          onFinish: function () {
+            sound.pause(); // To stop the looping sound is pause it
+            prizeDiv.html("Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>");
+          },
+        });
+      });
+
+      $("#setting-btn").click(function () {
+        $(".sm-setting").slideToggle(); // Slide toggle the sm-setting div
+      });
+    </script>
+  </body>
+</html>
