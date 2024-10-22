@@ -50,13 +50,7 @@
         <div class="sm-setting-inner">
           <div class="item-input">
             <input type="text" id="item-name" placeholder="Item Name" />
-            <input
-              type="number"
-              id="item-probability"
-              placeholder="Probability"
-              step="0.01"
-              min="0"
-              max="1" />
+            <input type="number" id="item-probability" placeholder="Probability" step="0.01" min="0" max="1" />
             <button id="add-item">Add Item</button>
           </div>
         </div>
@@ -181,6 +175,22 @@
         return Math.floor(Math.random() * items.length);
       }
 
+      // Function to shuffle an array
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]]; // Swap elements
+        }
+        return array;
+      }
+
+      // Function to get randomized end numbers
+      function getRandomizedEndNumbers(selectedItem) {
+        const randomNum = generateRandomNumber(); // Generate a random number
+        const endNumbers = [selectedItem.value, randomNum, selectedItem.value]; // Create the array
+        return shuffleArray(endNumbers); // Shuffle and return the array
+      }
+
       $("#btn-spin").click(function () {
         const selectedItem = selectItemBasedOnProbability(); // Get the entire item object
         const prizeTitle = $("#prize-title");
@@ -191,8 +201,11 @@
         console.log("(" + selectedItem.value + ")" + selectedItem.name); // Log the selected item value
 
         sound.play(); // Start play the sound after click button
+
+        const randomizedEndNumbers = getRandomizedEndNumbers(selectedItem);
+
         $("#example2 ul").playSpin({
-          endNum: [selectedItem.value, generateRandomNumber(), selectedItem.value],
+          endNum: randomizedEndNumbers,
           time: 3000,
           stopSeq: "leftToRight",
           onEnd: function () {
@@ -201,9 +214,7 @@
             ding.play(); // Play ding after each number is stopped
           },
           onFinish: function () {
-            prizeDiv.html(
-              "Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>"
-            );
+            prizeDiv.html("Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>");
             confetti({
               particleCount: 300,
               spread: 200,
