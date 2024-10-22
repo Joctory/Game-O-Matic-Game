@@ -165,7 +165,7 @@
 
       var sound = new Audio("ringtones/spinning.mp3");
       var ding = new Audio("ringtones/new-ding.mp3");
-      var ack = new Audio("ringtones/ack.mp3");
+      var celebrate = new Audio("ringtones/celebrate.mp3");
 
       // Loop of playing sound
       sound.addEventListener(
@@ -211,7 +211,7 @@
             });
             sound.pause();
             sound.currentTime = 0;
-            ack.play();
+            celebrate.play();
           },
         });
       });
