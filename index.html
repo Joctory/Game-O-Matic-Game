@@ -5,11 +5,10 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    />
     <title>AXS Game-O-Matic</title>
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
     <link rel="stylesheet" type="text/css" href="css/menu.css" />
     <link rel="stylesheet" type="text/css" href="css/jigsaw.css" />
     <link rel="stylesheet" type="text/css" href="css/flip.css" />
@@ -31,7 +30,7 @@
           <div class="redeem-btn game-btn" onclick="showRedeemMenu(redeemMenu)">
             <img src="assets/menu/redeem-button.png" />
           </div>
-          <div class="credit-btn game-btn">
+          <div class="credit-btn game-btn" onclick="showRedeemMenu(creditMenu)">
             <img src="assets/menu/credit-button.png" />
           </div>
         </div>
@@ -39,10 +38,7 @@
 
       <!-- Game Selection -->
       <div id="game-preview" class="game-selection">
-        <div
-          id="preview-close"
-          class="menu-close-btn game-btn"
-          onclick="hideGamePreview(gamePreview)">
+        <div id="preview-close" class="menu-close-btn game-btn" onclick="hideGamePreview(gamePreview)">
           <img src="assets/menu/close-btn.png" />
         </div>
         <div class="glide">
@@ -60,12 +56,10 @@
                       speed="1"
                       style="width: 60%"
                       loop
-                      autoplay></dotlottie-player>
+                      autoplay
+                    ></dotlottie-player>
                   </div>
-                  <div
-                    id="game1selectbutton"
-                    class="play-btn game-btn-mg"
-                    onclick="menustartGame('game1')">
+                  <div id="game1selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game1')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
@@ -82,12 +76,10 @@
                       speed="1"
                       style="width: 60%"
                       loop
-                      autoplay></dotlottie-player>
+                      autoplay
+                    ></dotlottie-player>
                   </div>
-                  <div
-                    id="game2selectbutton"
-                    class="play-btn game-btn-mg"
-                    onclick="menustartGame('game2')">
+                  <div id="game2selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game2')">
                     <img src="assets/menu/select-button.png" />
                   </div>
                 </div>
@@ -131,14 +123,11 @@
                 <img src="assets/menu/how-to-play-blue.png" />
               </div>
               <h3 class="ingame-title">
-                Sort pieces by color, shape, or edges, start with the corners and edges, and match
-                pieces to complete the picture.
+                Sort pieces by color, shape, or edges, start with the corners and edges, and match pieces to complete
+                the picture.
               </h3>
               <div class="pop-container-selection">
-                <div
-                  id="startButtong1"
-                  class="menu-btn game-btn-mg"
-                  onclick="hidePreviewInGame(howtoplayDivg1)">
+                <div id="startButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg1)">
                   <img src="assets/menu/start-button.png" />
                 </div>
               </div>
@@ -172,10 +161,7 @@
               <h3 class="ingame-title">Game Fail!</h3>
               <span class="ingame-title">Time's Up! You have not completed the puzzle!</span>
               <div class="pop-container-selection">
-                <div
-                  id="restartButtong1"
-                  class="menu-btn game-btn-mg"
-                  onclick="hidePreviewInGame(failMenug1)">
+                <div id="restartButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug1)">
                   <img src="assets/menu/replay-button.png" />
                 </div>
               </div>
@@ -253,19 +239,16 @@
 
         <!-- How to play -->
         <div id="howtoplayDivg2" class="pop-container">
+          <div class="pop-container-banner">
+            <img src="assets/menu/blue-banner.png" /><span class="pop-banner-title">How to Play</span>
+          </div>
           <div class="pop-container-inner">
-            <div class="pop-container-img">
-              <img src="assets/menu/how-to-play-blue.png" />
-            </div>
             <h3 class="ingame-title">
-              Uncover two matching symbols at once to eliminate them from the game. Beat the clock
-              to eliminate all cards as fast as you can and win!
+              Uncover two matching symbols at once to eliminate them from the game. Beat the clock to eliminate all
+              cards as fast as you can and win!
             </h3>
             <div class="pop-container-selection">
-              <div
-                id="startButtong2"
-                class="menu-btn game-btn-mg"
-                onclick="hidePreviewInGame(howtoplayDivg2)">
+              <div id="startButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg2)">
                 <img src="assets/menu/start-button.png" />
               </div>
             </div>
@@ -274,9 +257,10 @@
 
         <!-- Level Complete -->
         <div id="completeMenug2" class="pop-container">
+          <div class="pop-container-banner">
+            <img src="assets/menu/green-banner.png" /><span class="pop-banner-title">Game Completed</span>
+          </div>
           <div class="pop-container-inner">
-            <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
-            <h3 class="ingame-title">Game Completed!</h3>
             <span class="ingame-title">
               Congratulation! You have completed the puzzle!<br />You have earn one entry
             </span>
@@ -294,15 +278,13 @@
 
         <!-- Level Fail -->
         <div id="failMenug2" class="pop-container">
+          <div class="pop-container-banner">
+            <img src="assets/menu/red-banner.png" /><span class="pop-banner-title">Game Failed</span>
+          </div>
           <div class="pop-container-inner">
-            <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
-            <h3 class="ingame-title">Game Fail!</h3>
             <span class="ingame-title">Time's Up! You have not completed the puzzle!</span>
             <div class="pop-container-selection">
-              <div
-                id="restartButtong2"
-                class="menu-btn game-btn-mg"
-                onclick="hidePreviewInGame(failMenug2)">
+              <div id="restartButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug2)">
                 <img src="assets/menu/replay-button.png" />
               </div>
             </div>
@@ -333,9 +315,10 @@
         <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(redeemMenu)">
           <img src="assets/menu/close-btn.png" />
         </div>
+        <div class="pop-container-banner">
+          <img src="assets/menu/red-banner.png" /><span class="pop-banner-title">Rewards</span>
+        </div>
         <div class="pop-container-inner">
-          <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
-          <h3 class="ingame-title">Rewards</h3>
           <span class="sec-title" id="confirmRedeemText">
             Are you ready to redeem the rewards? Show this screen to our staff!
           </span>
@@ -343,7 +326,7 @@
             <img src="assets/menu/trial-holder.png" />
             <span id="entry-redeem-id">0</span>
           </div>
-          <span id="confirmRedeemSText"
+          <span id="confirmRedeemSText" class="span-text-small alert"
             >Do not click redeem button by yourself! It will loses all your entries!</span
           >
           <div class="pop-container-selection two-button">
@@ -359,20 +342,36 @@
 
       <!-- Confirm Redeem -->
       <div id="confirmRedeemMenu" class="pop-container">
-        <div
-          id="preview-close"
-          class="menu-close-btn game-btn"
-          onclick="hidePreview(confirmRedeemMenu)">
+        <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(confirmRedeemMenu)">
           <img src="assets/menu/close-btn.png" />
         </div>
+        <div class="pop-container-banner">
+          <img src="assets/menu/red-banner.png" /><span class="pop-banner-title">Thank You</span>
+        </div>
         <div class="pop-container-inner">
-          <!-- <div class="pop-container-img"><img src="assets/menu/pop-container-blue.png" /></div> -->
-          <h3 class="ingame-title">Thank You!</h3>
+          <h3 class="ingame-title"></h3>
           <span class="sec-title"> Thank for playing our game, good luck on your lucky draw! </span>
           <div class="pop-container-selection">
             <div class="menu-btn game-btn-mg" onclick="hidePreview(confirmRedeemMenu)">
               <img src="assets/menu/home-button.png" />
             </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Credit -->
+      <div id="creditMenu" class="pop-container">
+        <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(creditMenu)">
+          <img src="assets/menu/close-btn.png" />
+        </div>
+        <div class="pop-container-banner">
+          <img src="assets/menu/green-banner.png" /><span class="pop-banner-title">Credits</span>
+        </div>
+        <div class="pop-container-inner">
+          <div class="pop-container-long">
+            <p>Game Developed by Joel Lee from Joasis Web</p>
+            <p>Image created by Janelle From AXS</p>
+            <p>UI Assets by Penzilla from itch.io</p>
           </div>
         </div>
       </div>
@@ -397,9 +396,7 @@
     </div>
   </body>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script
-    src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
-    type="module"></script>
+  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
   <script type="text/javascript" src="js/flip.js"></script>
   <script type="text/javascript" src="js/jigsaw.js"></script>
   <script type="text/javascript" src="js/menu.js"></script>
