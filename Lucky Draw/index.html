@@ -8,7 +8,6 @@
   </head>
 
   <body>
-    <div id="loading">Loading...</div>
     <video autoplay muted loop id="background-video">
       <source src="assets/lucky_draw_bd.mp4" type="video/mp4" />
       Your browser does not support the video tag.
@@ -17,7 +16,7 @@
       <div class="slot-main">
         <div class="prize-title-holder">
           <div class="prize-title-container">
-            <h3 class="prize-title-main">Welcome to JoasisWeb Lucky Draw!</h3>
+            <h3 class="prize-title-main">Welcome to AXS Lucky Draw</h3>
           </div>
         </div>
         <div class="slotwrapper" id="example2">
@@ -25,16 +24,19 @@
             <li class="1 item-Foldable-Bags"><img src="assets/fold-bag.jpg" /></li>
             <li class="2 item-Whiteboards"><img src="assets/Whiteboards.jpg" /></li>
             <li class="3 item-Portable-Fans"><img src="assets/Portable Fans.jpg" /></li>
+            <li class="4 item-TADA-Vouchers"><img src="assets/TADA Vouchers.jpg" /></li>
           </ul>
           <ul class="machine-center">
             <li class="1 item-Whiteboards"><img src="assets/Whiteboards.jpg" /></li>
-            <li class="2 item-Portable-Fans"><img src="assets/Portable Fans.jpg" /></li>
-            <li class="3 item-Foldable-Bags"><img src="assets/fold-bag.jpg" /></li>
+            <li class="2 item-Foldable-Bags"><img src="assets/fold-bag.jpg" /></li>
+            <li class="3 item-TADA-Vouchers"><img src="assets/TADA Vouchers.jpg" /></li>
+            <li class="4 item-Portable-Fans"><img src="assets/Portable Fans.jpg" /></li>
           </ul>
           <ul class="machine-right">
-            <li class="1 item-Portable-Fans"><img src="assets/Portable Fans.jpg" /></li>
-            <li class="2 item-Foldable-Bags"><img src="assets/fold-bag.jpg" /></li>
-            <li class="3 item-Whiteboards"><img src="assets/Whiteboards.jpg" /></li>
+            <li class="1 item-TADA-Vouchers"><img src="assets/TADA Vouchers.jpg" /></li>
+            <li class="2 item-Portable-Fans"><img src="assets/Portable Fans.jpg" /></li>
+            <li class="3 item-Foldable-Bags"><img src="assets/fold-bag.jpg" /></li>
+            <li class="4 item-Whiteboards"><img src="assets/Whiteboards.jpg" /></li>
           </ul>
         </div>
         <div class="spin-button-container">
@@ -48,7 +50,13 @@
         <div class="sm-setting-inner">
           <div class="item-input">
             <input type="text" id="item-name" placeholder="Item Name" />
-            <input type="number" id="item-probability" placeholder="Probability" step="0.01" min="0" max="1" />
+            <input
+              type="number"
+              id="item-probability"
+              placeholder="Probability"
+              step="0.01"
+              min="0"
+              max="1" />
             <button id="add-item">Add Item</button>
           </div>
         </div>
@@ -59,5 +67,192 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="js/slotmachine.js"></script>
+
+    <script type="text/javascript">
+      // Others Function
+      // Existing items array with name included
+      let items = [
+        { value: 1, classname: "item-Foldable-Bags", name: "Foldable Bags", probability: 0.25 },
+        { value: 2, classname: "item-Whiteboards", name: "Whiteboards", probability: 0.4 },
+        { value: 3, classname: "item-Portable-Fans", name: "Portable Fans", probability: 0.1 },
+        { value: 4, classname: "item-TADA-Vouchers", name: "TADA Vouchers", probability: 0.25 },
+      ];
+
+      let editIndex = null; // To track the index of the item being edited
+
+      // Function to render items in the list
+      function renderItems() {
+        const itemList = $("#item-list");
+        itemList.empty();
+        items.forEach((item, index) => {
+          itemList.append(`
+            <li>
+              Name: ${item.name}, Probability: ${item.probability} 
+              <button class="edit-item" data-index="${index}">Edit</button>
+              <button class="remove-item" data-index="${index}">Remove</button>
+            </li>
+          `);
+        });
+      }
+
+      // Add item event
+      $("#add-item").click(function () {
+        const name = $("#item-name").val(); // Get the name from the input
+        const probability = parseFloat($("#item-probability").val());
+        if (name && !isNaN(probability) && probability >= 0) {
+          const newValue = items.length > 0 ? Math.max(...items.map((item) => item.value)) + 1 : 1; // Increment value
+          if (editIndex !== null) {
+            // Update existing item
+            items[editIndex] = {
+              value: items[editIndex].value,
+              classname: items[editIndex].classname, // Keep the original classname
+              name,
+              probability,
+            }; // Keep the original value
+            editIndex = null; // Reset edit index after updating
+          } else {
+            // Add new item
+            items.push({ value: newValue, name, probability });
+          }
+          renderItems();
+          $("#item-name").val(""); // Clear name input field
+          $("#item-probability").val(""); // Clear probability input field
+        }
+      });
+
+      // Edit item event
+      $(document).on("click", ".edit-item", function () {
+        editIndex = $(this).data("index");
+        const item = items[editIndex];
+        $("#item-name").val(item.name); // Populate name input field
+        $("#item-probability").val(item.probability);
+      });
+
+      // Remove item event
+      $(document).on("click", ".remove-item", function () {
+        const itemName = items[$(this).data("index")].name.replace(/\s+/g, "-"); // Get the item name and format it
+        items = items.filter((item) => item.name !== items[$(this).data("index")].name); // Remove item from the array
+        renderItems(); // Re-render the item list
+        // Remove the corresponding <li> element from the DOM using class
+        $(`.item-${itemName}`).remove(); // Remove the <li> element by class
+      });
+
+      // Initial render
+      renderItems();
+
+      // Function to select an item based on normalized probability
+      function selectItemBasedOnProbability() {
+        // Calculate the total probability
+        const totalProbability = items.reduce((sum, item) => sum + item.probability, 0);
+
+        // Normalize probabilities if total is not 1
+        const normalizedItems = items.map((item) => ({
+          ...item,
+          probability: item.probability / totalProbability, // Normalize each item's probability
+        }));
+
+        const randomValue = Math.random(); // Generate a random value between 0 and 1
+
+        let cumulativeProbability = 0;
+        for (const item of normalizedItems) {
+          cumulativeProbability += item.probability;
+          if (randomValue <= cumulativeProbability) {
+            return item; // Return the entire item object
+          }
+        }
+
+        // Fallback to the last item if no selection is made (shouldn't happen if probabilities sum to 1)
+        return normalizedItems[normalizedItems.length - 1];
+      }
+
+      var sound = new Audio("ringtones/spinning.mp3");
+      var ding = new Audio("ringtones/new-ding.mp3");
+      var celebrate = new Audio("ringtones/celebrate.mp3");
+
+      // Loop of playing sound
+      sound.addEventListener(
+        "ended",
+        function () {
+          this.currentTime = 0;
+          this.play();
+        },
+        false
+      );
+
+      $("#btn-spin").click(function () {
+        const selectedItem = selectItemBasedOnProbability(); // Get the entire item object
+        const prizeTitle = $("#prize-title");
+        const prizeDiv = $(".prize-title-main");
+
+        prizeDiv.html("Spin started! Good Luck!");
+        console.log("(" + selectedItem.value + ")" + selectedItem.name); // Log the selected item value
+
+        const firstClassNames = getFirstClassNameFromLists(selectedItem.classname);
+        sound.play(); // Start play the sound after click button
+        console.log(selectedItem.classname);
+        // const randomizedEndNumbers = getRandomizedEndNumbers(selectedItem);
+
+        $("#example2 ul").playSpin({
+          endNum: firstClassNames,
+          time: 3000,
+          stopSeq: "leftToRight",
+          onEnd: function () {
+            ding.pause();
+            ding.currentTime = 0;
+            ding.play(); // Play ding after each number is stopped
+          },
+          onFinish: function () {
+            prizeDiv.html(
+              "Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>"
+            );
+            confetti({
+              particleCount: 400,
+              spread: 250,
+              origin: { y: 0.5 },
+            });
+            sound.pause();
+            sound.currentTime = 0;
+            celebrate.play();
+          },
+        });
+      });
+
+      $("#setting-btn").click(function () {
+        $(".sm-setting").slideToggle(); // Slide toggle the sm-setting div
+      });
+
+      function scaleSlotMain() {
+        const slotMain = document.querySelector(".slot-main");
+        const scaleFactor = Math.min(window.innerWidth / 620, window.innerHeight / 200); // Adjust these values as needed
+        slotMain.style.transform = `scale(${Math.min(scaleFactor - 0.1, 1)})`; // Cap scale at 1
+      }
+
+      // Call the function on load and resize
+      window.addEventListener("resize", scaleSlotMain);
+
+      // Hide loading indicator when the page is fully loaded
+      window.addEventListener("load", function () {
+        scaleSlotMain();
+      });
+
+      // Function to get the first class name from the specified item
+      function getFirstClassNameFromLists(itemClassName) {
+        // Select all <li> elements from the specified <ul> classes
+        const items = $(".machine-left li, .machine-center li, .machine-right li");
+
+        // Filter the items to find the one with the specified class name
+        const matchingItems = items.filter(function () {
+          return $(this).hasClass(itemClassName);
+        });
+
+        // Return the first class name of the matching items
+        return matchingItems
+          .map(function () {
+            const classes = this.className.split(" "); // Split the class names
+            return classes[0]; // Return the first class name
+          })
+          .get(); // Convert jQuery object to array
+      }
+    </script>
   </body>
 </html>

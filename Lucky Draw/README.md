@@ -1,10 +1,7 @@
-# jQuery Slot Machine
-Customized jQuery Slot Machine to suit developer's needs.
+# Pure HTML JS CSS Slot Machine/Lucky Draw
 
 Check out the example link:
 
-[Example with codes](https://momokang.github.io/slotmachine/)
+[Example](https://joasisweb.com/lucky-draw-game/)
 
 Feel free to use it or drop comments for improvement.
-
-If you like it, you are very welcomed to [buy me a coffee](https://www.paypal.me/kang7000/10).
