@@ -1,5 +1,5 @@
 .game-two-container {
-  background-color: #dadada;
+  background-color: #95ebd6;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -8,6 +8,25 @@
   overflow: hidden;
   -webkit-user-select: none;
   user-select: none;
+}
+
+.game-two-container::before {
+  content: "";
+  background-image: url("../assets/game-assets/in-game-background.png");
+  background-repeat: repeat;
+  background-position: 0px 0px;
+  background-size: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  opacity: 0.2;
+  animation: animatedBackground 40s linear infinite;
+  /* -moz-animation: animatedBackground 40s linear infinite;
+  -webkit-animation: animatedBackground 40s linear infinite;
+  -ms-animation: animatedBackground 40s linear infinite;
+  -o-animation: animatedBackground 40s linear infinite; */
 }
 
 #Grid {

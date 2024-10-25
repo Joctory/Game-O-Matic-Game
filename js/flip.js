@@ -10,7 +10,7 @@ let matched = 0;
 let need = 2;
 let paused = false;
 let timerg2;
-let timerdata2 = 10;
+let timerdata2 = 60;
 
 const startButtong2 = document.getElementById("startButtong2");
 const restartButtong2 = document.getElementById("restartButtong2");

@@ -52,11 +52,11 @@ html {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 55%;
 }
 
 .game-btn img {
-  width: 55%;
+  width: 100%;
   max-width: 200px;
   cursor: pointer;
 }
@@ -77,7 +77,10 @@ html {
 }
 
 .menu-container {
-  padding: 5vh;
+  padding-top: 8vh;
+  padding-bottom: 3vh;
+  padding-left: 5vh;
+  padding-right: 5vh;
   width: 100%;
   height: 100%;
   display: flex;
@@ -85,10 +88,10 @@ html {
   justify-content: space-between;
   align-items: center;
 
-  /* background-image: url("../assets/menu-bg.jpg"); */
+  background-image: url("../assets/menu/menu-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center;
+  background-position: center 65%;
   background-color: #266f9a;
 }
 
@@ -119,7 +122,8 @@ html {
 }
 
 .logo-main {
-  width: 100%;
+  width: 43vh;
+  max-width: 360px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -136,7 +140,7 @@ html {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 18;
 }
 
@@ -175,7 +179,7 @@ html {
 }
 
 .game-preview-1 {
-  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+  background-image: url("../assets/menu/game-selection-box.png");
 }
 
 .game-preview-2 {
@@ -309,6 +313,10 @@ html {
   justify-content: center;
 }
 
+.game-preview-animation dotlottie-player {
+  max-width: 300px;
+}
+
 .selection-main {
   width: 100%;
   display: flex;
@@ -431,6 +439,7 @@ html {
   border-radius: 50px;
   width: 80%;
   height: -webkit-fill-available;
+  height: 40vh;
   min-height: 40vh;
   position: absolute;
   top: 50%;
@@ -617,7 +626,8 @@ html {
 .loader {
   width: 45px;
   height: 30px;
-  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%, linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%,
+    linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   position: relative;
   clip-path: inset(-100% 0 0 0);
@@ -636,7 +646,8 @@ html {
 }
 .loader::after {
   inset: -100% 0 100%;
-  background: linear-gradient(#e50021 0 0) 0 0/100% 50%, linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#e50021 0 0) 0 0/100% 50%,
+    linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   animation-name: l2-2;
 }
@@ -775,6 +786,10 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 500px;
+    width: 550px;
+  }
+
+  .logo-main {
+    max-width: 400px;
   }
 }
