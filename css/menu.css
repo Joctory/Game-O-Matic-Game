@@ -53,6 +53,7 @@ html {
   justify-content: center;
   align-items: center;
   width: 55%;
+  max-width: 180px;
 }
 
 .game-btn img {
@@ -91,11 +92,44 @@ html {
   background-image: url("../assets/menu/menu-bg.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 65%;
+  background-position: center 60%;
   background-color: #266f9a;
 }
 
-.game-entry {
+.setting-main {
+  position: absolute;
+  top: 40%;
+  right: -10px;
+  transform: translate(-50%, -50%);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1vh;
+  width: 10vh;
+  max-width: 60px;
+  z-index: 5;
+}
+
+.setting-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  padding: 5px;
+  cursor: pointer;
+
+  background-image: url("../assets/menu/setting-button.png");
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position: center;
+}
+
+.setting-button img {
+  width: 100%;
+}
+
+.game-entry-main {
   position: absolute;
   top: 10px;
   width: 100%;
@@ -122,7 +156,8 @@ html {
 }
 
 .logo-main {
-  width: 43vh;
+  opacity: 0;
+  width: 85vw;
   max-width: 360px;
   display: flex;
   justify-content: center;
@@ -144,6 +179,17 @@ html {
   z-index: 18;
 }
 
+#game-exit-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  z-index: 19;
+}
+
 /* Game selection */
 .game-selection {
   display: flex;
@@ -152,7 +198,8 @@ html {
   visibility: hidden;
   opacity: 0;
 
-  width: 80%;
+  width: 90%;
+  max-width: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -179,11 +226,11 @@ html {
 }
 
 .game-preview-1 {
-  background-image: url("../assets/menu/game-selection-box.png");
+  background-image: url("../assets/menu/box-orange.png");
 }
 
 .game-preview-2 {
-  background-image: url("../assets/menu/Box_Blue_Rounded.png");
+  background-image: url("../assets/menu/box-blue.png");
 }
 
 .glide-control {
@@ -298,12 +345,23 @@ html {
 
 .game-title {
   position: absolute;
-  top: 15px;
-  z-index: 5;
+  top: 0;
+  width: 100%;
+  z-index: 3;
 }
 
-.game-title img {
-  width: 30vh;
+.game-title-holder {
+  width: 100%;
+}
+
+.game-title-span {
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  z-index: 4;
 }
 
 .game-preview-animation {
@@ -313,11 +371,20 @@ html {
   justify-content: center;
 }
 
-.game-preview-animation dotlottie-player {
+.game-preview-1 .game-preview-animation dotlottie-player {
+  width: 60%;
   max-width: 300px;
+  padding-top: 3vw;
+}
+
+.game-preview-2 .game-preview-animation dotlottie-player {
+  width: 50%;
+  max-width: 250px;
+  padding-top: 5vw;
 }
 
 .selection-main {
+  opacity: 0;
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -343,6 +410,11 @@ html {
   transform: translateY(2px);
 }
 
+/* Redeem Menu */
+#redeemMenu {
+  height: auto;
+}
+
 /* In Game CSS */
 .back-button {
   width: 35px;
@@ -350,7 +422,7 @@ html {
   top: 20px;
   left: 20px;
   cursor: pointer;
-  z-index: 19;
+  z-index: 1000;
 }
 
 .back-button img {
@@ -373,7 +445,7 @@ html {
 
   padding: 15px;
   z-index: 20;
-  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+  background-image: url("../assets/menu/box-orange.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -382,8 +454,7 @@ html {
 
 .game-exit-inner {
   width: 100%;
-  height: 40vh;
-  max-height: 300px;
+  height: auto;
 
   display: flex;
   justify-content: space-around;
@@ -399,7 +470,15 @@ html {
 }
 
 .sec-title {
-  font-size: 3vh;
+  padding-top: 15px;
+  font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+}
+
+.sec-long-p {
+  padding-top: 15px;
+  font-size: 1.3rem;
   text-align: center;
   color: #fff;
 }
@@ -436,19 +515,19 @@ html {
   align-items: center;
   visibility: hidden;
   opacity: 0;
-  border-radius: 50px;
-  width: 80%;
-  height: -webkit-fill-available;
-  height: 40vh;
-  min-height: 40vh;
+  border-radius: 5.5vh;
+  width: 90%;
+  max-width: 400px;
+  height: auto;
+  min-height: 32vh;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 
-  padding: 6vh 18px 20px 18px;
+  padding: 6vh 22px 20px 22px;
   z-index: 25;
-  background-image: url("../assets/menu/Box_Orange_Rounded.png");
+  background-image: url("../assets/menu/box-orange.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -459,19 +538,23 @@ html {
   position: relative;
   width: 100%;
   height: 100%;
-  max-height: 300px;
+  max-height: 320px;
 
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  gap: 10px;
+  gap: 1.2rem;
+}
+
+#confirmRedeemMenu .pop-container-inner {
+  max-height: 350px;
+  gap: 0;
 }
 
 .pop-container-img {
   position: absolute;
-  top: -60px;
-
+  bottom: calc(100% - 50px);
   width: 100%;
   display: flex;
   justify-content: center;
@@ -482,8 +565,23 @@ html {
   width: 70%;
 }
 
+.pop-container-img .ingame-title {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
 .pop-container-inner .ingame-title {
   font-size: 1.5rem;
+  text-align: center;
+  color: #fff;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.pop-container-inner .ingame-long-p {
+  font-size: 1.3rem;
   text-align: center;
   color: #fff;
   padding-left: 10px;
@@ -565,6 +663,59 @@ html {
   top: 0;
 }
 
+/* Game Complete */
+#completeMenug1 .pop-container-inner,
+#completeMenug2 .pop-container-inner {
+  max-height: unset;
+  gap: 0.5vh;
+}
+
+#completeMenug1 .ingame-title,
+#completeMenug2 .ingame-title {
+  width: 70%;
+}
+
+#completeMenug1 .ingame-long-p,
+#completeMenug2 .ingame-long-p {
+  padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#completeMenug1.pop-container .game-entry,
+#completeMenug2.pop-container .game-entry {
+  margin-top: -2vh;
+}
+
+#completeMenug1 .pop-container-inner dotlottie-player,
+#completeMenug2 .pop-container-inner dotlottie-player {
+  width: 50%;
+}
+
+/* Game Failed */
+#failMenug1 .pop-container-inner,
+#failMenug2 .pop-container-inner {
+  max-height: unset;
+  gap: 0.5vh;
+}
+
+#failMenug1 .ingame-title,
+#failMenug2 .ingame-title {
+  width: 70%;
+}
+
+#failMenug1 .ingame-long-p,
+#failMenug2 .ingame-long-p {
+  padding-top: 10px;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+#failMenug1 .pop-container-inner dotlottie-player,
+#failMenug2 .pop-container-inner dotlottie-player {
+  width: 50%;
+}
+
 /* Text Paragraph */
 .span-text-small {
   color: #fff;
@@ -604,7 +755,7 @@ html {
   transform: translate(-50%, -50%);
   display: none;
   background-color: #00000078;
-  z-index: 999;
+  z-index: 500;
 }
 
 #readyText {
@@ -617,6 +768,15 @@ html {
   text-align: center;
 }
 
+/* Lottie File */
+.pop-container-inner dotlottie-player {
+  width: 60%;
+}
+
+.game-exit-inner dotlottie-player {
+  width: 60%;
+}
+
 /* Loader */
 .overlay-loader {
   justify-content: center;
@@ -626,8 +786,7 @@ html {
 .loader {
   width: 45px;
   height: 30px;
-  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%,
-    linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%, linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   position: relative;
   clip-path: inset(-100% 0 0 0);
@@ -646,8 +805,7 @@ html {
 }
 .loader::after {
   inset: -100% 0 100%;
-  background: linear-gradient(#e50021 0 0) 0 0/100% 50%,
-    linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#e50021 0 0) 0 0/100% 50%, linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   animation-name: l2-2;
 }
@@ -700,6 +858,7 @@ html {
     radial-gradient(circle 3px, #eeee89 90%, #0000) 0 0/20% 100% #266f9a;
   overflow: hidden;
 }
+
 .game-loader::before {
   content: "";
   width: 20px;
@@ -708,6 +867,22 @@ html {
   background: #ffff2d;
   animation: l5-1 0.25s 0.153s infinite steps(5) alternate, l5-2 3s infinite linear;
 }
+
+.game-init-button {
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.game-init-button img {
+  width: 100%;
+}
+
 @keyframes l5-1 {
   0% {
     clip-path: polygon(50% 50%, 100% 0, 100% 0, 0 0, 0 100%, 100% 100%, 100% 100%);
@@ -728,6 +903,19 @@ html {
 }
 
 /* Animation */
+.bounce-in {
+  -webkit-animation: bounce-in 0.8s both;
+  animation: bounce-in 0.8s both;
+}
+
+.slide-in-bottom {
+  animation: slide-in-bottom 0.8s ease-in-out 0.3s 1 normal forwards;
+}
+
+.bounce-in-top {
+  animation: bounce-in-top 0.6s ease-in-out 0s 1 normal forwards;
+}
+
 @keyframes popUp {
   0% {
     transform: translate(-50%, -50%) scale(0.8);
@@ -769,9 +957,97 @@ html {
   }
 }
 
+@keyframes bounce-in {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: scale(0);
+  }
+
+  70% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  81% {
+    animation-timing-function: ease-in;
+    opacity: 1;
+    transform: scale(0.84);
+  }
+
+  89% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  95% {
+    animation-timing-function: ease-in;
+    transform: scale(0.95);
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes slide-in-bottom {
+  0% {
+    opacity: 0;
+    transform: translateY(250px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes bounce-in-top {
+  0% {
+    animation-timing-function: ease-in;
+    opacity: 0;
+    transform: translateY(-100px);
+  }
+
+  38% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  55% {
+    animation-timing-function: ease-in;
+    opacity: 1;
+    transform: translateY(-30px);
+  }
+
+  72% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  81% {
+    animation-timing-function: ease-in;
+    opacity: 1;
+    transform: translateY(-8px);
+  }
+
+  100% {
+    animation-timing-function: ease-out;
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Mobile Responsive */
 @media screen and (max-width: 450px) {
   .game-selection-preview {
-    height: 50vh;
+    height: 42vh;
   }
 
   .menu-close-btn {
@@ -786,10 +1062,21 @@ html {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 550px;
+    width: 500px;
+  }
+
+  .game-preview-1 .game-preview-animation dotlottie-player {
+    width: 70%;
+    max-width: 300px;
+  }
+
+  .game-preview-2 .game-preview-animation dotlottie-player {
+    width: 60%;
+    max-width: 250px;
   }
 
   .logo-main {
+    width: 50vh;
     max-width: 400px;
   }
 }

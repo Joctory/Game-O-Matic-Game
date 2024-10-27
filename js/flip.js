@@ -1,7 +1,7 @@
 "use-strict";
 
-// const theme = ["flip1", "flip2", "flip3", "flip4", "flip5", "flip6"];
-const theme = ["flip1", "flip2"];
+const theme = ["flip1", "flip2", "flip3", "flip4", "flip5", "flip6"];
+// const theme = ["flip1", "flip2"];
 
 let cards = [];
 let history = [];
@@ -17,6 +17,7 @@ const restartButtong2 = document.getElementById("restartButtong2");
 const completeMenug2 = document.getElementById("completeMenug2");
 const failMenug2 = document.getElementById("failMenug2");
 const homebuttong2 = document.getElementById("homebuttong2");
+const shuffle = new Audio("/assets/menu/card-shuffle.mp3");
 
 window.addEventListener("resize", zoom);
 
@@ -66,12 +67,33 @@ function start() {
 
   readyAndGoScreen();
   setTimeout(() => {
-    document.getElementById("Grid").classList.remove("disabled");
-    gameTimerg2();
+    if (areSoundEffectsOn) {
+      shuffle.play();
+    }
+    let delay = 0.5; // Delay in seconds
+    let animationsFinished = 0; // Counter for finished animations
+    const totalCards = document.querySelectorAll(".Card").length; // Total number of cards
+
+    document.querySelectorAll(".Card").forEach((card, index) => {
+      card.style.animationDelay = `${index * delay}s`;
+      card.classList.add("bounce-in-top");
+
+      // Add an event listener for the animation end
+      card.addEventListener("animationend", () => {
+        animationsFinished++; // Increment the counter when an animation ends
+
+        // Check if all animations have finished
+        if (animationsFinished === totalCards) {
+          gameTimerg2();
+          document.getElementById("Grid").classList.remove("disabled");
+        }
+      });
+    });
   }, 1000);
 }
 
 function click(e) {
+  playSoundEffect("assets/menu/card-flip.mp3");
   let t = e.target.id; // “t” is the target element
   if (!paused && t.startsWith("Back") && !e.target.classList.contains("Flip")) {
     // Is it a selectable card?
@@ -87,6 +109,7 @@ function click(e) {
       c2 = document.getElementById("Front-" + h2).getAttribute("cid");
       if (c1 == c2) {
         flipped = 0;
+        playSoundEffect("/assets/menu/flip-correct.mp3");
         matched++;
         // Check if all cards are matched
         if (matched === theme.length) {
@@ -94,6 +117,7 @@ function click(e) {
         }
       } else {
         paused = true;
+        playSoundEffect("/assets/menu/flip-wrong.mp3");
         setTimeout(function () {
           flip(h1);
           flip(h2);
@@ -110,25 +134,35 @@ function restartGame2() {
   start();
 }
 
+function flip(n) {
+  document.getElementById("Front-" + n).classList.toggle("Flip");
+  document.getElementById("Back-" + n).classList.toggle("Flip");
+}
+
 // New function to handle all cards matched
 function allCardsMatched() {
   clearInterval(timerg2);
   addGameEntry();
   updateGameEntry();
   setGameCompleted(2);
+  playSoundEffect("/assets/menu/level-complete.mp3");
   showPreviewInGame(completeMenug2);
-}
-
-function flip(n) {
-  document.getElementById("Front-" + n).classList.toggle("Flip");
-  document.getElementById("Back-" + n).classList.toggle("Flip");
+  confetti({
+    particleCount: 400,
+    spread: 250,
+    origin: { y: 0.5 },
+  });
 }
 
 function resetFlipGame() {
+  if (areSoundEffectsOn) {
+    shuffle.pause();
+    shuffle.currentTime = 0;
+  }
   // Reset the game timer or any other game state variables if necessary
   clearInterval(timerg2);
   document.getElementById("g2timeleft").innerHTML = timerdata2;
-  document.getElementById("Grid").classList.remove("disabled");
+  document.getElementById("Grid").classList.add("disabled");
 
   cards = []; // Clear the cards array
   history = []; // Clear the history array
@@ -143,6 +177,10 @@ function resetFlipGame() {
     if (front) front.classList.remove("Flip"); // Reset front card
     if (back) back.classList.remove("Flip"); // Reset back card
   }
+
+  document.querySelectorAll(".Card").forEach((card, index) => {
+    card.classList.remove("bounce-in-top");
+  });
 }
 
 function gameTimerg2() {
@@ -152,6 +190,7 @@ function gameTimerg2() {
     sec--;
     if (sec < 0) {
       clearInterval(timerg2);
+      playSoundEffect("/assets/menu/level-fail.mp3");
       showPreviewInGame(failMenug2);
       document.getElementById("Grid").classList.add("disabled");
     }

@@ -222,10 +222,7 @@ function twist0(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(
-      seg0.p1.x + coeffh * dxh + coeffv * dxv,
-      seg0.p1.y + coeffh * dyh + coeffv * dyv
-    );
+    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
   } // pointAt
 } // twist0
 
@@ -256,10 +253,7 @@ function twist1(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(
-      seg0.p1.x + coeffh * dxh + coeffv * dxv,
-      seg0.p1.y + coeffh * dyh + coeffv * dyv
-    );
+    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
   } // pointAt
 } // twist1
 
@@ -295,10 +289,7 @@ function twist2(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(
-      seg0.p1.x + coeffh * dxh + coeffv * dxv,
-      seg0.p1.y + coeffh * dyh + coeffv * dyv
-    );
+    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
   } // pointAt
 } // twist2
 
@@ -549,11 +540,7 @@ class PolyPiece {
       do {
         for (tries = 0; tries < 3; tries++) {
           potNext = tbTries[currEdge.edge][tries];
-          edgeNumber = edgeIsInTbEdges(
-            currEdge.kx + potNext.dkx,
-            currEdge.ky + potNext.dky,
-            potNext.edge
-          );
+          edgeNumber = edgeIsInTbEdges(currEdge.kx + potNext.dkx, currEdge.ky + potNext.dky, potNext.edge);
           if (edgeNumber === false) continue; // can't here
           // new element in loop
           currEdge = tbEdges[edgeNumber]; // new current edge
@@ -699,10 +686,7 @@ class Puzzle {
   constructor(params) {
     this.autoStart = false;
 
-    this.container =
-      typeof params.container == "string"
-        ? document.getElementById(params.container)
-        : params.container;
+    this.container = typeof params.container == "string" ? document.getElementById(params.container) : params.container;
 
     /* the following code will add the event Handlers several times if
           new Puzzle objects are created with same container.
@@ -718,6 +702,7 @@ class Puzzle {
     this.container.addEventListener(
       "touchstart",
       (event) => {
+        playSoundEffect("/assets/menu/arrow-select.mp3");
         event.preventDefault();
         if (event.touches.length != 1) return;
         let ev = event.touches[0];
@@ -730,6 +715,7 @@ class Puzzle {
     );
 
     this.container.addEventListener("mouseup", (event) => {
+      playSoundEffect("/assets/menu/arrow-select.mp3");
       event.preventDefault();
       handleLeave();
     });
@@ -796,8 +782,7 @@ class Puzzle {
     /* assuming the width of pieces is 1, computes their height
              (computenxAndny aims at making relativeHeight as close as possible to 1)
         */
-    this.relativeHeight =
-      this.srcImage.naturalHeight / this.ny / (this.srcImage.naturalWidth / this.nx);
+    this.relativeHeight = this.srcImage.naturalHeight / this.ny / (this.srcImage.naturalWidth / this.nx);
 
     this.defineShapes({
       coeffDecentr: 0.12,
@@ -876,10 +861,7 @@ class Puzzle {
     for (let ky = 0; ky <= ny; ++ky) {
       corners[ky] = [];
       for (let kx = 0; kx <= nx; ++kx) {
-        corners[ky][kx] = new Point(
-          kx + alea(-coeffDecentr, coeffDecentr),
-          ky + alea(-coeffDecentr, coeffDecentr)
-        );
+        corners[ky][kx] = new Point(kx + alea(-coeffDecentr, coeffDecentr), ky + alea(-coeffDecentr, coeffDecentr));
         if (kx == 0) corners[ky][kx].x = 0;
         if (kx == nx) corners[ky][kx].x = nx;
         if (ky == 0) corners[ky][kx].y = 0;
@@ -1391,6 +1373,7 @@ let events = []; // queue for events
                 if (pp == moving.pp) continue; // don't match with myself
                 if (moving.pp.ifNear(pp)) {
                   // a match !
+                  playSoundEffect("/assets/menu/jigsaw-match.mp3");
                   // compare polypieces sizes to move smallest one
                   if (pp.pieces.length > moving.pp.pieces.length) {
                     pp.merge(moving.pp);
@@ -1420,14 +1403,9 @@ let events = []; // queue for events
         //              tmpImage.style.top=(puzzle.polyPieces[0].y + puzzle.scaley / 2) / puzzle.contHeight * 100 + 50 + "%" ;
         //              tmpImage.style.left=(puzzle.polyPieces[0].x + puzzle.scalex / 2) / puzzle.contWidth * 100 + 50 + "%" ;
         tmpImage.style.left =
-          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) / puzzle.contWidth) *
-            100 +
-          "%";
+          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) / puzzle.contWidth) * 100 + "%";
         tmpImage.style.top =
-          ((puzzle.polyPieces[0].y + puzzle.scaley / 2 + puzzle.gameHeight / 2) /
-            puzzle.contHeight) *
-            100 +
-          "%";
+          ((puzzle.polyPieces[0].y + puzzle.scaley / 2 + puzzle.gameHeight / 2) / puzzle.contHeight) * 100 + "%";
 
         tmpImage.classList.add("moving");
         setTimeout(() => (tmpImage.style.top = tmpImage.style.left = "50%"), 0);
@@ -1439,7 +1417,13 @@ let events = []; // queue for events
         addGameEntry();
         updateGameEntry();
         setGameCompleted(1);
+        playSoundEffect("/assets/menu/level-complete.mp3");
         showPreviewInGame(completeMenug1);
+        confetti({
+          particleCount: 400,
+          spread: 250,
+          origin: { y: 0.5 },
+        });
 
       case 65: // wait for new number of pieces - of new picture
         if (event && event.event == "nbpieces") {
@@ -1479,6 +1463,7 @@ function gameTimer() {
     sec--;
     if (sec < 0) {
       clearInterval(timerg1);
+      playSoundEffect("/assets/menu/level-fail.mp3");
       showPreviewInGame(failMenug1);
       document.getElementById("forPuzzle").classList.add("disabled");
     }
