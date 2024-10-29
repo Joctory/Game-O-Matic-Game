@@ -185,13 +185,13 @@ var slotMachine = function (el, options, track) {
   this.init();
 };
 
-// Others Function
+// ============================ Others Function ============================ //
 // Existing items array with name included
 let items = [
-  { value: 1, classname: "item-Foldable-Bags", name: "Foldable Bags", probability: 0.25 },
-  { value: 2, classname: "item-Whiteboards", name: "Whiteboards", probability: 0.4 },
-  { value: 3, classname: "item-Portable-Fans", name: "Portable Fans", probability: 0.1 },
-  { value: 4, classname: "item-TADA-Vouchers", name: "TADA Vouchers", probability: 0.25 },
+  { value: 1, classname: "item-Foldable-Bags", name: "Foldable Bags", probability: 0.35 },
+  { value: 2, classname: "item-Whiteboards", name: "Whiteboards", probability: 0.5 },
+  { value: 3, classname: "item-Portable-Fans", name: "Portable Fans", probability: 0.15 },
+  // { value: 4, classname: "item-TADA-Vouchers", name: "TADA Vouchers", probability: 0.25 },
 ];
 
 let editIndex = null; // To track the index of the item being edited
