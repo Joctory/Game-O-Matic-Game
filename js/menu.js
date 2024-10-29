@@ -199,8 +199,7 @@ function showRedeemMenu(div) {
     confirmRedeemButton.style.display = "none";
     confirmRedeemSText.style.display = "none";
   } else {
-    confirmRedeemText.innerHTML =
-      "Are you ready to redeem the rewards? Show this screen to our staff!";
+    confirmRedeemText.innerHTML = "Are you ready to redeem the rewards? Show this screen to our staff!";
     confirmRedeemButton.style.display = "block";
     confirmRedeemSText.style.display = "block";
   }
@@ -386,5 +385,7 @@ window.addEventListener("load", function () {
   // gameInitButton.style.display = "flex";
   setTimeout(() => {
     gameoverlayLoader.style.display = "none";
+    logoMain.classList.add("bounce-in");
+    selectionMain.classList.add("slide-in-bottom");
   }, 3000);
 });
