@@ -75,6 +75,8 @@ html {
   justify-content: center;
   align-items: center;
   overflow: hidden;
+  background: rgb(39, 190, 208);
+  background: linear-gradient(180deg, rgba(39, 190, 208, 1) 0%, rgba(183, 255, 255, 1) 73.2763%);
 }
 
 .menu-container {
@@ -89,11 +91,10 @@ html {
   justify-content: space-between;
   align-items: center;
 
-  background-image: url("../assets/menu/menu-bg.jpg");
+  background-image: url("../assets/menu/menu-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
-  background-position: center 60%;
-  background-color: #266f9a;
+  background-position: center;
 }
 
 .setting-main {
@@ -122,7 +123,7 @@ html {
   background-image: url("../assets/menu/setting-button.png");
   background-repeat: no-repeat;
   background-size: contain;
-  background-position: center;
+  background-position: center 60%;
 }
 
 .setting-button img {
@@ -139,7 +140,27 @@ html {
 }
 
 .game-entry img {
-  width: 15vh;
+  width: 12vh;
+}
+
+.cloud-bg-left {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 60%;
+  mix-blend-mode: overlay;
+  animation: cloud_left 5s ease-in-out infinite;
+  z-index: -1;
+}
+
+.cloud-bg-right {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  mix-blend-mode: overlay;
+  animation: cloud_right 6s ease-in-out infinite;
+  z-index: -1;
 }
 
 .timerspan,
@@ -149,7 +170,7 @@ html {
 #entry-redeem-g2-id {
   position: absolute;
   left: 51%;
-  top: 50%;
+  top: 49%;
   transform: translate(-50%, -50%);
   color: #ffffff;
   text-shadow: 0px -1px #363636;
@@ -438,6 +459,7 @@ html {
   opacity: 0;
 
   width: 80%;
+  max-width: 400px;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -738,7 +760,8 @@ html {
 }
 
 .pop-container-long p {
-  font-size: 1rem;
+  font-size: 1.2rem;
+  text-align: center;
 }
 
 .alert {
@@ -773,8 +796,8 @@ html {
   width: 60%;
 }
 
-.game-exit-inner dotlottie-player {
-  width: 60%;
+.game-exit dotlottie-player {
+  width: 50%;
 }
 
 /* Loader */
@@ -786,7 +809,8 @@ html {
 .loader {
   width: 45px;
   height: 30px;
-  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%, linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%,
+    linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   position: relative;
   clip-path: inset(-100% 0 0 0);
@@ -805,7 +829,8 @@ html {
 }
 .loader::after {
   inset: -100% 0 100%;
-  background: linear-gradient(#e50021 0 0) 0 0/100% 50%, linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#e50021 0 0) 0 0/100% 50%,
+    linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   animation-name: l2-2;
 }
@@ -843,6 +868,7 @@ html {
 
 /* Game loader */
 #game-overlay-loader {
+  display: flex;
   background: #266f9a;
   z-index: 99;
 }
@@ -1044,10 +1070,34 @@ html {
   }
 }
 
+@keyframes cloud_left {
+  0% {
+    left: 0;
+  }
+  50% {
+    left: -5%;
+  }
+  100% {
+    left: 0;
+  }
+}
+
+@keyframes cloud_right {
+  0% {
+    right: 0;
+  }
+  50% {
+    right: -5%;
+  }
+  100% {
+    right: 0;
+  }
+}
+
 /* Mobile Responsive */
 @media screen and (max-width: 450px) {
   .game-selection-preview {
-    height: 42vh;
+    height: 45vh;
   }
 
   .menu-close-btn {

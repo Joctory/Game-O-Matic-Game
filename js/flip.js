@@ -196,3 +196,17 @@ function gameTimerg2() {
     }
   }, 1000);
 }
+
+function scaleFlipMain() {
+  const slotMain = document.getElementById("Grid");
+  if (window.innerWidth < 420) {
+    const scaleFactor = Math.min(window.innerWidth / 420); // Adjust these values as needed
+    slotMain.style.transform = `scale(${Math.min(scaleFactor + 0.2, 1)})`; // Cap scale at 1
+  } else {
+    slotMain.style.transform = `scale(1)`; // Cap scale at 1
+  }
+}
+
+// Call the function on load and resize
+window.addEventListener("resize", scaleFlipMain);
+window.addEventListener("load", scaleFlipMain);

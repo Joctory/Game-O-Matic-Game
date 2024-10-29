@@ -199,7 +199,8 @@ function showRedeemMenu(div) {
     confirmRedeemButton.style.display = "none";
     confirmRedeemSText.style.display = "none";
   } else {
-    confirmRedeemText.innerHTML = "Are you ready to redeem the rewards? Show this screen to our staff!";
+    confirmRedeemText.innerHTML =
+      "Are you ready to redeem the rewards? Show this screen to our staff!";
     confirmRedeemButton.style.display = "block";
     confirmRedeemSText.style.display = "block";
   }
@@ -328,7 +329,7 @@ function getGameCompleted(game) {
 function getTotalGameEntries() {
   // Check the current total game entries from the cookie
   const cookies = document.cookie.split("; ");
-  let totalEntries = 1;
+  let totalEntries = 0;
 
   cookies.forEach((cookie) => {
     const [name, value] = cookie.split("=");
