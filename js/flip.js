@@ -17,7 +17,7 @@ const restartButtong2 = document.getElementById("restartButtong2");
 const completeMenug2 = document.getElementById("completeMenug2");
 const failMenug2 = document.getElementById("failMenug2");
 const homebuttong2 = document.getElementById("homebuttong2");
-const shuffle = new Audio("/assets/menu/card-shuffle.mp3");
+const shuffle = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-shuffle.mp3");
 
 window.addEventListener("resize", zoom);
 
@@ -57,7 +57,7 @@ function start() {
     let r = Math.floor(Math.random() * cards.length); // Random Card
     let c = cards[r];
     var img = document.createElement("img");
-    img.src = "../assets/game-assets/" + c + ".png";
+    img.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/game-assets/" + c + ".png";
     var src = document.getElementById("Front-" + i);
     src.appendChild(img);
     src.setAttribute("cid", c);
@@ -93,7 +93,7 @@ function start() {
 }
 
 function click(e) {
-  playSoundEffect("assets/menu/card-flip.mp3");
+  playSoundEffect("cardflip");
   let t = e.target.id; // “t” is the target element
   if (!paused && t.startsWith("Back") && !e.target.classList.contains("Flip")) {
     // Is it a selectable card?
@@ -109,7 +109,7 @@ function click(e) {
       c2 = document.getElementById("Front-" + h2).getAttribute("cid");
       if (c1 == c2) {
         flipped = 0;
-        playSoundEffect("/assets/menu/flip-correct.mp3");
+        playSoundEffect("flipcorrect");
         matched++;
         // Check if all cards are matched
         if (matched === theme.length) {
@@ -117,7 +117,7 @@ function click(e) {
         }
       } else {
         paused = true;
-        playSoundEffect("/assets/menu/flip-wrong.mp3");
+        playSoundEffect("flipwrong");
         setTimeout(function () {
           flip(h1);
           flip(h2);
@@ -145,7 +145,7 @@ function allCardsMatched() {
   addGameEntry();
   updateGameEntry();
   setGameCompleted(2);
-  playSoundEffect("/assets/menu/level-complete.mp3");
+  playSoundEffect("levelcomplete");
   showPreviewInGame(completeMenug2);
   confetti({
     particleCount: 400,
@@ -190,7 +190,7 @@ function gameTimerg2() {
     sec--;
     if (sec < 0) {
       clearInterval(timerg2);
-      playSoundEffect("/assets/menu/level-fail.mp3");
+      playSoundEffect("levelfail");
       showPreviewInGame(failMenug2);
       document.getElementById("Grid").classList.add("disabled");
     }

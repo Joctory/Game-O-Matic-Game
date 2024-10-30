@@ -29,6 +29,10 @@ var confirmRedeemSText = document.getElementById("confirmRedeemSText");
 var confirmRedeemButton = document.getElementById("confirmRedeemButton");
 var prevButton = document.getElementById("prev-btn");
 var nextButton = document.getElementById("next-btn");
+
+// Init Game Var
+var gameInitLoader = document.getElementById("game-init-loader");
+const initLoader = document.querySelector(".init-loader");
 var gameInitButton = document.getElementById("game-init-button");
 
 // Setting
@@ -39,21 +43,62 @@ var game1selectbutton = document.getElementById("game1selectbutton");
 var game2selectbutton = document.getElementById("game2selectbutton");
 
 // Global variable to track sound effects state
-const audio = new Audio("/assets/menu/bg-music.mp3"); // Replace with your music file path
+const audio = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg-music.mp3"); // Replace with your music file path
 let areSoundEffectsOn = true; // Assume sound effects are on by default
+let isMusicOn = musicImg.src.includes("music-on.png"); // Assuming this is the 'on' icon
+let sounds = {}; // Object to hold all audio objects
+
+// Preload the sound effects when the page loads
+function preloadSounds() {
+  sounds.select = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select.mp3");
+  sounds.close = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close.mp3");
+  sounds.confirm = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/confirm.mp3");
+  sounds.redeemsuccess = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/redeem-success.mp3"
+  );
+  sounds.exit = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit.mp3");
+  sounds.readygo = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/ready-go.mp3");
+  sounds.arrowselect = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow-select.mp3"
+  );
+
+  // In Game
+  sounds.levelfail = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/level-fail.mp3");
+  sounds.levelcomplete = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/level-complete.mp3"
+  );
+
+  // Jigsaw Game
+  sounds.jigsawmatch = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/jigsaw-match.mp3"
+  );
+
+  // Flip Game
+  sounds.cardflip = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-flip.mp3");
+  sounds.cardshuffle = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-shuffle.mp3"
+  );
+  sounds.flipcorrect = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/flip-correct.mp3"
+  );
+  sounds.flipwrong = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/flip-wrong.mp3");
+
+  // Add more sounds as needed
+}
 
 function toggleMusicIcon() {
   // Check if music is currently playing
-  const isMusicOn = musicImg.src.includes("music-on.png"); // Assuming this is the 'on' icon
 
   if (isMusicOn) {
     // Stop the music and change the icon to 'off'
+    isMusicOn = false;
     audio.pause(); // Stop the music
-    musicImg.src = "assets/menu/music-off.png"; // Change to the 'off' icon
+    musicImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/music-off.png"; // Change to the 'off' icon
   } else {
     // Start the music and change the icon to 'on'
+    isMusicOn = true;
     playMusic();
-    musicImg.src = "assets/menu/music-on.png"; // Change to the 'on' icon
+    musicImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/music-on.png"; // Change to the 'on' icon
   }
 }
 
@@ -62,32 +107,35 @@ function toggleSoundIcon() {
   // Check if sound effects are currently playing
   if (areSoundEffectsOn) {
     // Stop all sound effects and change the icon to 'off'
-    soundeffectImg.src = "assets/menu/sound-effect-off.png"; // Change to the 'off' icon
+    soundeffectImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/sound-effect-off.png"; // Change to the 'off' icon
     areSoundEffectsOn = false; // Update the state
   } else {
     // Start all sound effects and change the icon to 'on'
-    soundeffectImg.src = "assets/menu/sound-effect-on.png"; // Change to the 'on' icon
+    soundeffectImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/sound-effect-on.png"; // Change to the 'on' icon
     areSoundEffectsOn = true; // Update the state
   }
 }
 
 // Function to play a sound effect
-function playSoundEffect(soundFile) {
-  if (areSoundEffectsOn) {
-    const audio = new Audio(soundFile); // Create a new audio object for the sound effect
-    audio.play(); // Play the sound effect
+function playSoundEffect(soundKey) {
+  const sound = sounds[soundKey];
+  if (sound && areSoundEffectsOn) {
+    sound.currentTime = 0; // Reset to the start
+    sound.play(); // Play the preloaded sound
   }
 }
 
 // Function to play music
 function playMusic() {
-  audio.loop = true; // Optional: Loop the music
-  audio.play();
+  if (isMusicOn) {
+    audio.loop = true; // Optional: Loop the music
+    audio.play();
+  }
 }
 
 // Game Selection Script
 function showGameSelectionPreview(div) {
-  playSoundEffect("assets/menu/select.mp3");
+  playSoundEffect("select");
   var game1com = getGameCompleted(1);
   var game2com = getGameCompleted(2);
 
@@ -98,18 +146,22 @@ function showGameSelectionPreview(div) {
 
   if (game1com == 1) {
     game1selectbutton.classList.add("disabled");
-    game1selectbutton.querySelector("img").src = "assets/menu/completed-button.png";
+    game1selectbutton.querySelector("img").src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/completed-button.png";
   } else {
     game1selectbutton.classList.remove("disabled");
-    game1selectbutton.querySelector("img").src = "assets/menu/select-button.png";
+    game1selectbutton.querySelector("img").src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png";
   }
 
   if (game2com == 1) {
     game2selectbutton.classList.add("disabled");
-    game2selectbutton.querySelector("img").src = "assets/menu/completed-button.png";
+    game2selectbutton.querySelector("img").src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/completed-button.png";
   } else {
     game2selectbutton.classList.remove("disabled");
-    game2selectbutton.querySelector("img").src = "assets/menu/select-button.png";
+    game2selectbutton.querySelector("img").src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png";
   }
 }
 
@@ -119,6 +171,7 @@ function game1Logic() {
   setTimeout(() => {
     gameoverlayLoader.style.display = "none";
     resetJigsawGame();
+    playMusic();
     showPreviewInGame(howtoplayDivg1);
   }, 3000);
 
@@ -131,6 +184,7 @@ function game2Logic() {
   setTimeout(() => {
     gameoverlayLoader.style.display = "none";
     resetFlipGame();
+    playMusic();
     showPreviewInGame(howtoplayDivg2);
   }, 3000);
 
@@ -139,7 +193,7 @@ function game2Logic() {
 
 // Pop Up Container
 function showPreview(div) {
-  playSoundEffect("assets/menu/select.mp3");
+  playSoundEffect("select");
   removePopClass();
   updateGameEntry();
   div.classList.add("active");
@@ -157,7 +211,7 @@ function showPreviewInGame(div) {
 }
 
 function hidePreviewInGame(div) {
-  playSoundEffect("assets/menu/select.mp3");
+  playSoundEffect("select");
   updateGameEntry();
   removePopClass();
   div.classList.add("closed");
@@ -167,7 +221,7 @@ function hidePreviewInGame(div) {
 }
 
 function hidePreview(div) {
-  playSoundEffect("assets/menu/close.mp3");
+  playSoundEffect("close");
   updateGameEntry();
   removePopClass();
   div.classList.remove("active");
@@ -176,7 +230,7 @@ function hidePreview(div) {
 }
 
 function hideGamePreview(div) {
-  playSoundEffect("assets/menu/close.mp3");
+  playSoundEffect("close");
   updateGameEntry();
   removePopClass();
   div.classList.remove("active");
@@ -185,7 +239,7 @@ function hideGamePreview(div) {
 }
 
 function showRedeemMenu(div) {
-  playSoundEffect("assets/menu/select.mp3");
+  playSoundEffect("select");
   removePopClass();
   updateGameEntry();
   div.classList.add("active");
@@ -206,7 +260,7 @@ function showRedeemMenu(div) {
 }
 
 function confirmRedeem() {
-  playSoundEffect("assets/menu/confirm.mp3");
+  playSoundEffect("confirm");
   removePopClass();
   redeemMenu.classList.remove("active");
   redeemMenu.classList.add("closed");
@@ -216,7 +270,7 @@ function confirmRedeem() {
     updateGameEntry();
     overlayLoader.style.display = "none";
     overlay.style.display = "block";
-    playSoundEffect("/assets/menu/redeem-success.mp3");
+    playSoundEffect("redeemsuccess");
     confirmRedeemMenu.classList.add("active");
     confirmRedeemMenu.classList.remove("closed");
     confetti({
@@ -228,14 +282,14 @@ function confirmRedeem() {
 }
 
 function confirmExit() {
-  playSoundEffect("assets/menu/exit.mp3");
+  playSoundEffect("exit");
   gameExit.classList.remove("closed");
   gameExit.classList.add("active");
   gameExitoverlay.style.display = "block";
 }
 
 function exitGame() {
-  playSoundEffect("assets/menu/confirm.mp3");
+  playSoundEffect("confirm");
   logoMain.classList.remove("bounce-in");
   selectionMain.classList.remove("slide-in-bottom");
   document.querySelectorAll(".mini-game-container").forEach((container) => {
@@ -254,7 +308,7 @@ function exitGame() {
 }
 
 function noExitGame() {
-  playSoundEffect("assets/menu/close.mp3");
+  playSoundEffect("close");
   gameExit.classList.remove("active");
   gameExit.classList.add("closed");
   gameExitoverlay.style.display = "none";
@@ -262,7 +316,7 @@ function noExitGame() {
 
 function menustartGame(gameId) {
   hidePreview(gamePreview);
-  playSoundEffect("assets/menu/confirm.mp3");
+  playSoundEffect("confirm");
   document.getElementById(gameId).classList.remove("closed");
   document.getElementById(gameId).classList.add("active");
   // You might want to initialize or reset the game here
@@ -287,7 +341,7 @@ function removePopClass() {
 
 function readyAndGoScreen(game) {
   document.getElementById("readyGoScreen").style.display = "block";
-  playSoundEffect("/assets/menu/ready-go.mp3");
+  playSoundEffect("readygo");
   document.getElementById("readyText").innerHTML = "Ready!";
   setTimeout(function () {
     document.getElementById("readyText").innerHTML = "Go!";
@@ -363,7 +417,7 @@ function updateGameEntry() {
 // Page Ready and Loaded
 document.addEventListener("DOMContentLoaded", function () {
   glide.on("run", function () {
-    playSoundEffect("/assets/menu/arrow-select.mp3");
+    playSoundEffect("arrowselect");
     const index = glide.index;
     if (index == 0) {
       prevButton.style.display = "none";
@@ -379,13 +433,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function () {
   glide.update();
+  preloadSounds();
   // playMusic();
-  // Show Loader
-  gameoverlayLoader.style.display = "flex";
-  // gameInitButton.style.display = "flex";
   setTimeout(() => {
-    gameoverlayLoader.style.display = "none";
-    logoMain.classList.add("bounce-in");
-    selectionMain.classList.add("slide-in-bottom");
-  }, 3000);
+    initLoader.classList.add("loaded"); // Add the class to make it 100%
+    setTimeout(() => {
+      gameInitLoader.classList.add("remove");
+      logoMain.classList.add("bounce-in");
+      selectionMain.classList.add("slide-in-bottom");
+    }, 1700);
+  }, 2000);
 });

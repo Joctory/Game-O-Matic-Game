@@ -702,7 +702,7 @@ class Puzzle {
     this.container.addEventListener(
       "touchstart",
       (event) => {
-        playSoundEffect("/assets/menu/arrow-select.mp3");
+        playSoundEffect("arrowselect");
         event.preventDefault();
         if (event.touches.length != 1) return;
         let ev = event.touches[0];
@@ -715,7 +715,7 @@ class Puzzle {
     );
 
     this.container.addEventListener("mouseup", (event) => {
-      playSoundEffect("/assets/menu/arrow-select.mp3");
+      playSoundEffect("arrowselect");
       event.preventDefault();
       handleLeave();
     });
@@ -1166,7 +1166,7 @@ let loadFile;
 } //  // scope for loadFile
 
 function loadInitialFile() {
-  puzzle.srcImage.src = "../assets/game-assets/puzzle.jpg";
+  puzzle.srcImage.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/game-assets/puzzle.jpg";
 }
 //-----------------------------------------------------------------------------
 function imageLoaded(puzzle) {
@@ -1373,7 +1373,9 @@ let events = []; // queue for events
                 if (pp == moving.pp) continue; // don't match with myself
                 if (moving.pp.ifNear(pp)) {
                   // a match !
-                  playSoundEffect("/assets/menu/jigsaw-match.mp3");
+                  playSoundEffect(
+                    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/jigsaw-match.mp3"
+                  );
                   // compare polypieces sizes to move smallest one
                   if (pp.pieces.length > moving.pp.pieces.length) {
                     pp.merge(moving.pp);
@@ -1417,7 +1419,7 @@ let events = []; // queue for events
         addGameEntry();
         updateGameEntry();
         setGameCompleted(1);
-        playSoundEffect("/assets/menu/level-complete.mp3");
+        playSoundEffect("levelcomplete");
         showPreviewInGame(completeMenug1);
         confetti({
           particleCount: 400,
@@ -1463,7 +1465,7 @@ function gameTimer() {
     sec--;
     if (sec < 0) {
       clearInterval(timerg1);
-      playSoundEffect("/assets/menu/level-fail.mp3");
+      playSoundEffect("levelfail");
       showPreviewInGame(failMenug1);
       document.getElementById("forPuzzle").classList.add("disabled");
     }

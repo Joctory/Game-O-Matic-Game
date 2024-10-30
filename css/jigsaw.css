@@ -6,7 +6,7 @@
 
 .game-one-container::before {
   content: "";
-  background-image: url("../assets/game-assets/in-game-background.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/game-assets/in-game-background.png");
   background-repeat: repeat;
   background-position: 0px 0px;
   background-size: cover;
