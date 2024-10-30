@@ -96,8 +96,9 @@ html {
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
+  z-index: 1;
 
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/menu-bg.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/menu-bg.png");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -126,7 +127,7 @@ html {
   padding: 5px;
   cursor: pointer;
 
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/setting-button.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/setting-button.png");
   background-repeat: no-repeat;
   background-size: contain;
   background-position: center 60%;
@@ -156,7 +157,7 @@ html {
   width: 60%;
   mix-blend-mode: overlay;
   animation: cloud_left 5s ease-in-out infinite;
-  z-index: -1;
+  z-index: 0;
 }
 
 .cloud-bg-right {
@@ -166,7 +167,7 @@ html {
   width: 50%;
   mix-blend-mode: overlay;
   animation: cloud_right 6s ease-in-out infinite;
-  z-index: -1;
+  z-index: 0;
 }
 
 .timerspan,
@@ -253,11 +254,11 @@ html {
 }
 
 .game-preview-1 {
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/box-orange.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/box-orange.png");
 }
 
 .game-preview-2 {
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/box-blue.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/box-blue.png");
 }
 
 .glide-control {
@@ -475,7 +476,7 @@ html {
 
   padding: 15px;
   z-index: 20;
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/box-orange.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/box-orange.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom;
@@ -557,7 +558,7 @@ html {
 
   padding: 6vh 22px 20px 22px;
   z-index: 25;
-  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/box-orange.png");
+  background-image: url("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/box-orange.png");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   background-position: bottom;
