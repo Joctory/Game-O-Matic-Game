@@ -281,9 +281,15 @@ function selectItemBasedOnProbability() {
   return normalizedItems[normalizedItems.length - 1];
 }
 
-var sound = new Audio("ringtones/spinning.mp3");
-var ding = new Audio("ringtones/new-ding.mp3");
-var celebrate = new Audio("ringtones/celebrate.mp3");
+var sound = new Audio(
+  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/spinning.mp3"
+);
+var ding = new Audio(
+  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/new-ding.mp3"
+);
+var celebrate = new Audio(
+  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/celebrate.mp3"
+);
 
 // Loop of playing sound
 sound.addEventListener(
