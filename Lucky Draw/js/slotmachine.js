@@ -106,11 +106,9 @@ var slotMachine = function (el, options, track) {
   };
 
   slot.startSpin = function () {
-    slot.$el
-      .css("top", -slot.listHeight)
-      .animate({ top: "0px" }, slot.spinSpeed, "linear", function () {
-        slot.lowerSpeed();
-      });
+    slot.$el.css("top", -slot.listHeight).animate({ top: "0px" }, slot.spinSpeed, "linear", function () {
+      slot.lowerSpeed();
+    });
   };
 
   slot.lowerSpeed = function () {
@@ -118,8 +116,7 @@ var slotMachine = function (el, options, track) {
 
     if (
       slot.loopCount < slot.options.loops ||
-      (slot.options.manualStop &&
-        startSeqs["mainSeq" + track.mainSeq]["subSeq" + track.subSeq]["spinning"])
+      (slot.options.manualStop && startSeqs["mainSeq" + track.mainSeq]["subSeq" + track.subSeq]["spinning"])
     ) {
       slot.startSpin();
     } else {
@@ -281,12 +278,8 @@ function selectItemBasedOnProbability() {
   return normalizedItems[normalizedItems.length - 1];
 }
 
-var sound = new Audio(
-  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/spinning.mp3"
-);
-var ding = new Audio(
-  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/new-ding.mp3"
-);
+var sound = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/spinning.mp3");
+var ding = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/new-ding.mp3");
 var celebrate = new Audio(
   "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/Lucky%20Draw/ringtones/celebrate.mp3"
 );
@@ -324,9 +317,7 @@ $("#btn-spin").click(function () {
       ding.play(); // Play ding after each number is stopped
     },
     onFinish: function () {
-      prizeDiv.html(
-        "Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>"
-      );
+      prizeDiv.html("Congratuations on getting <span class='selected'>" + selectedItem.name + "</span>");
       confetti({
         particleCount: 400,
         spread: 250,
