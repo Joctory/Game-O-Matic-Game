@@ -45,7 +45,7 @@ var game2selectbutton = document.getElementById("game2selectbutton");
 // Global variable to track sound effects state
 const audio = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg-music.mp3"); // Replace with your music file path
 let areSoundEffectsOn = true; // Assume sound effects are on by default
-let isMusicOn = musicImg.src.includes("music-on.png"); // Assuming this is the 'on' icon
+let isMusicOn = true; // Assuming this is the 'on' icon
 let sounds = {}; // Object to hold all audio objects
 
 // Preload the sound effects when the page loads
