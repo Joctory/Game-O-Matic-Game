@@ -368,11 +368,13 @@ html {
   position: absolute;
   top: 0;
   width: 100%;
+  max-height: 90px;
   z-index: 3;
 }
 
 .game-title-holder {
   width: 100%;
+  max-height: 90px;
 }
 
 .game-title-span {
@@ -395,13 +397,13 @@ html {
 .game-preview-1 .game-preview-animation dotlottie-player {
   width: 60%;
   max-width: 300px;
-  padding-top: 3vw;
+  padding-top: 0;
 }
 
 .game-preview-2 .game-preview-animation dotlottie-player {
   width: 50%;
   max-width: 250px;
-  padding-top: 5vw;
+  padding-top: 0;
 }
 
 .selection-main {
