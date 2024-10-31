@@ -1450,7 +1450,7 @@ function startGame() {
   readyAndGoScreen();
   events.push({
     event: "nbpieces",
-    nbpieces: 14, //Number of puzzle pieces
+    nbpieces: 10, //Number of puzzle pieces
   });
   setTimeout(() => {
     gameTimer();
