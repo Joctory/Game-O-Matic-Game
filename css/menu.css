@@ -276,6 +276,7 @@ html {
 .glide__bullet {
   padding: 5px;
   border-radius: 100%;
+  background: #ffffff;
 }
 
 .glide__bullet.glide__bullet--active {
