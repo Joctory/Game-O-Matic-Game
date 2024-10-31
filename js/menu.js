@@ -48,6 +48,9 @@ let areSoundEffectsOn = true; // Assume sound effects are on by default
 let isMusicOn = true; // Assuming this is the 'on' icon
 let sounds = {}; // Object to hold all audio objects
 
+// Global variable to hold the currently playing sound effect
+let currentSoundEffect = null;
+
 // Preload the sound effects when the page loads
 function preloadSounds() {
   sounds.select = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select.mp3");
@@ -119,9 +122,22 @@ function toggleSoundIcon() {
 // Function to play a sound effect
 function playSoundEffect(soundKey) {
   const sound = sounds[soundKey];
+
   if (sound && areSoundEffectsOn) {
+    // Stop the currently playing sound effect if there is one
+    if (currentSoundEffect) {
+      currentSoundEffect.pause(); // Pause the currently playing sound
+      currentSoundEffect.currentTime = 0; // Reset to the start
+    }
+
+    // Set the new sound as the current sound effect
+    currentSoundEffect = sound;
+
+    // Play the new sound effect
     sound.currentTime = 0; // Reset to the start
-    sound.play(); // Play the preloaded sound
+    sound.play().catch((error) => {
+      console.error(`Error playing sound: ${soundKey}`, error);
+    });
   }
 }
 
@@ -414,8 +430,29 @@ function updateGameEntry() {
   RedeemEntry.innerHTML = tentry;
 }
 
+// game-btn to handle the click and touch events
+document.querySelectorAll(".game-btn").forEach((button) => {
+  const toggleActiveClass = () => {
+    button.classList.toggle("active"); // Toggle the active class
+  };
+
+  button.addEventListener("click", toggleActiveClass); // Handle click event
+  button.addEventListener("touchstart", toggleActiveClass); // Handle touch event
+});
+
+// game-btn-mg to handle the click and touch events
+document.querySelectorAll(".game-btn-mg").forEach((button) => {
+  const toggleActiveClass = () => {
+    button.classList.toggle("active"); // Toggle the active class
+  };
+
+  button.addEventListener("click", toggleActiveClass); // Handle click event
+  button.addEventListener("touchstart", toggleActiveClass); // Handle touch event
+});
+
 // Page Ready and Loaded
 document.addEventListener("DOMContentLoaded", function () {
+  preloadSounds();
   glide.on("run", function () {
     playSoundEffect("arrowselect");
     const index = glide.index;
@@ -433,7 +470,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function () {
   glide.update();
-  preloadSounds();
   // playMusic();
   setTimeout(() => {
     initLoader.classList.add("loaded"); // Add the class to make it 100%
