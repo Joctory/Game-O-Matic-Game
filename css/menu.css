@@ -27,7 +27,7 @@
 
   -webkit-tap-highlight-color: transparent;
 
-  box-sizing: border-box;
+  box-sizing: border-box !important;
 }
 
 img {
@@ -274,9 +274,8 @@ html {
 }
 
 .glide__bullet {
-  padding: 5px;
-  border-radius: 100%;
-  background: #ffffff;
+  padding: 5px !important;
+  border-radius: 100% !important;
 }
 
 .glide__bullet.glide__bullet--active {
@@ -1070,12 +1069,12 @@ html {
   }
   99% {
     transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
+    opacity: 1;
     visibility: visible;
   }
   100% {
     transform: translate(-50%, -50%) scale(0.8);
-    opacity: 0;
+    opacity: 1;
     visibility: hidden;
   }
 }
@@ -1200,6 +1199,26 @@ html {
   .menu-close-btn {
     width: 35px;
     right: -5px;
+  }
+}
+
+@media screen and (max-width: 410px) and (max-height: 680px) {
+  .game-title,
+  .game-title-holder {
+    max-height: 80px;
+  }
+  #forPuzzle {
+    height: 80vh !important;
+    top: 53% !important;
+  }
+
+  #Grid {
+    margin-top: 5vh;
+  }
+
+  .Card {
+    width: 28vw !important;
+    height: 19vh !important;
   }
 }
 
