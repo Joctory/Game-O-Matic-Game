@@ -43,7 +43,9 @@ var game1selectbutton = document.getElementById("game1selectbutton");
 var game2selectbutton = document.getElementById("game2selectbutton");
 
 // Global variable to track sound effects state
-const audio = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg-music.mp3"); // Replace with your music file path
+const audio = new Audio(
+  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/bg-music.mp3"
+); // Replace with your music file path
 let areSoundEffectsOn = true; // Assume sound effects are on by default
 let isMusicOn = true; // Assuming this is the 'on' icon
 let sounds = {}; // Object to hold all audio objects
@@ -53,38 +55,54 @@ let currentSoundEffect = null;
 
 // Preload the sound effects when the page loads
 function preloadSounds() {
-  sounds.select = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select.mp3");
-  sounds.close = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close.mp3");
-  sounds.confirm = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/confirm.mp3");
-  sounds.redeemsuccess = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/redeem-success.mp3"
+  sounds.select = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/select.mp3"
   );
-  sounds.exit = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit.mp3");
-  sounds.readygo = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/ready-go.mp3");
+  sounds.close = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/close.mp3"
+  );
+  sounds.confirm = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/confirm.mp3"
+  );
+  sounds.redeemsuccess = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/redeem-success.mp3"
+  );
+  sounds.exit = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/exit.mp3"
+  );
+  sounds.readygo = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/ready-go.mp3"
+  );
   sounds.arrowselect = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow-select.mp3"
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/arrow-select.mp3"
   );
 
   // In Game
-  sounds.levelfail = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/level-fail.mp3");
+  sounds.levelfail = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/level-fail.mp3"
+  );
   sounds.levelcomplete = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/level-complete.mp3"
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/level-complete.mp3"
   );
 
   // Jigsaw Game
   sounds.jigsawmatch = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/jigsaw-match.mp3"
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/jigsaw-match.mp3"
   );
 
   // Flip Game
-  sounds.cardflip = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-flip.mp3");
+  sounds.cardflip = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/card-flip.mp3"
+  );
   sounds.cardshuffle = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-shuffle.mp3"
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/card-shuffle.mp3"
   );
   sounds.flipcorrect = new Audio(
-    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/flip-correct.mp3"
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/flip-correct.mp3"
   );
-  sounds.flipwrong = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/flip-wrong.mp3");
+  sounds.flipwrong = new Audio(
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/flip-wrong.mp3"
+  );
 
   // Add more sounds as needed
 }
@@ -96,12 +114,14 @@ function toggleMusicIcon() {
     // Stop the music and change the icon to 'off'
     isMusicOn = false;
     audio.pause(); // Stop the music
-    musicImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/music-off.png"; // Change to the 'off' icon
+    musicImg.src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/music-off.png"; // Change to the 'off' icon
   } else {
     // Start the music and change the icon to 'on'
     isMusicOn = true;
     playMusic();
-    musicImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/music-on.png"; // Change to the 'on' icon
+    musicImg.src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/music-on.png"; // Change to the 'on' icon
   }
 }
 
@@ -110,11 +130,13 @@ function toggleSoundIcon() {
   // Check if sound effects are currently playing
   if (areSoundEffectsOn) {
     // Stop all sound effects and change the icon to 'off'
-    soundeffectImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/sound-effect-off.png"; // Change to the 'off' icon
+    soundeffectImg.src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/sound-effect-off.png"; // Change to the 'off' icon
     areSoundEffectsOn = false; // Update the state
   } else {
     // Start all sound effects and change the icon to 'on'
-    soundeffectImg.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/sound-effect-on.png"; // Change to the 'on' icon
+    soundeffectImg.src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/sound-effect-on.png"; // Change to the 'on' icon
     areSoundEffectsOn = true; // Update the state
   }
 }
@@ -163,21 +185,21 @@ function showGameSelectionPreview(div) {
   if (game1com == 1) {
     game1selectbutton.classList.add("disabled");
     game1selectbutton.querySelector("img").src =
-      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/completed-button.png";
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/completed-button.png";
   } else {
     game1selectbutton.classList.remove("disabled");
     game1selectbutton.querySelector("img").src =
-      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png";
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/select-button.png";
   }
 
   if (game2com == 1) {
     game2selectbutton.classList.add("disabled");
     game2selectbutton.querySelector("img").src =
-      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/completed-button.png";
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/completed-button.png";
   } else {
     game2selectbutton.classList.remove("disabled");
     game2selectbutton.querySelector("img").src =
-      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png";
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/select-button.png";
   }
 }
 
@@ -269,7 +291,8 @@ function showRedeemMenu(div) {
     confirmRedeemButton.style.display = "none";
     confirmRedeemSText.style.display = "none";
   } else {
-    confirmRedeemText.innerHTML = "Are you ready to redeem the rewards? Show this screen to our staff!";
+    confirmRedeemText.innerHTML =
+      "Are you ready to redeem the rewards? Show this screen to our staff!";
     confirmRedeemButton.style.display = "block";
     confirmRedeemSText.style.display = "block";
   }

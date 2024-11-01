@@ -17,7 +17,9 @@ const restartButtong2 = document.getElementById("restartButtong2");
 const completeMenug2 = document.getElementById("completeMenug2");
 const failMenug2 = document.getElementById("failMenug2");
 const homebuttong2 = document.getElementById("homebuttong2");
-const shuffle = new Audio("https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/card-shuffle.mp3");
+const shuffle = new Audio(
+  "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/card-shuffle.mp3"
+);
 
 window.addEventListener("resize", zoom);
 
@@ -57,7 +59,10 @@ function start() {
     let r = Math.floor(Math.random() * cards.length); // Random Card
     let c = cards[r];
     var img = document.createElement("img");
-    img.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/game-assets/" + c + ".png";
+    img.src =
+      "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/game-assets/" +
+      c +
+      ".png";
     var src = document.getElementById("Front-" + i);
     src.appendChild(img);
     src.setAttribute("cid", c);

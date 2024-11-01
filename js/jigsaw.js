@@ -222,7 +222,10 @@ function twist0(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
+    return new Point(
+      seg0.p1.x + coeffh * dxh + coeffv * dxv,
+      seg0.p1.y + coeffh * dyh + coeffv * dyv
+    );
   } // pointAt
 } // twist0
 
@@ -253,7 +256,10 @@ function twist1(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
+    return new Point(
+      seg0.p1.x + coeffh * dxh + coeffv * dxv,
+      seg0.p1.y + coeffh * dyh + coeffv * dyv
+    );
   } // pointAt
 } // twist1
 
@@ -289,7 +295,10 @@ function twist2(side, ca, cb) {
   side.type = "z";
 
   function pointAt(coeffh, coeffv) {
-    return new Point(seg0.p1.x + coeffh * dxh + coeffv * dxv, seg0.p1.y + coeffh * dyh + coeffv * dyv);
+    return new Point(
+      seg0.p1.x + coeffh * dxh + coeffv * dxv,
+      seg0.p1.y + coeffh * dyh + coeffv * dyv
+    );
   } // pointAt
 } // twist2
 
@@ -540,7 +549,11 @@ class PolyPiece {
       do {
         for (tries = 0; tries < 3; tries++) {
           potNext = tbTries[currEdge.edge][tries];
-          edgeNumber = edgeIsInTbEdges(currEdge.kx + potNext.dkx, currEdge.ky + potNext.dky, potNext.edge);
+          edgeNumber = edgeIsInTbEdges(
+            currEdge.kx + potNext.dkx,
+            currEdge.ky + potNext.dky,
+            potNext.edge
+          );
           if (edgeNumber === false) continue; // can't here
           // new element in loop
           currEdge = tbEdges[edgeNumber]; // new current edge
@@ -686,7 +699,10 @@ class Puzzle {
   constructor(params) {
     this.autoStart = false;
 
-    this.container = typeof params.container == "string" ? document.getElementById(params.container) : params.container;
+    this.container =
+      typeof params.container == "string"
+        ? document.getElementById(params.container)
+        : params.container;
 
     /* the following code will add the event Handlers several times if
           new Puzzle objects are created with same container.
@@ -782,7 +798,8 @@ class Puzzle {
     /* assuming the width of pieces is 1, computes their height
              (computenxAndny aims at making relativeHeight as close as possible to 1)
         */
-    this.relativeHeight = this.srcImage.naturalHeight / this.ny / (this.srcImage.naturalWidth / this.nx);
+    this.relativeHeight =
+      this.srcImage.naturalHeight / this.ny / (this.srcImage.naturalWidth / this.nx);
 
     this.defineShapes({
       coeffDecentr: 0.12,
@@ -861,7 +878,10 @@ class Puzzle {
     for (let ky = 0; ky <= ny; ++ky) {
       corners[ky] = [];
       for (let kx = 0; kx <= nx; ++kx) {
-        corners[ky][kx] = new Point(kx + alea(-coeffDecentr, coeffDecentr), ky + alea(-coeffDecentr, coeffDecentr));
+        corners[ky][kx] = new Point(
+          kx + alea(-coeffDecentr, coeffDecentr),
+          ky + alea(-coeffDecentr, coeffDecentr)
+        );
         if (kx == 0) corners[ky][kx].x = 0;
         if (kx == nx) corners[ky][kx].x = nx;
         if (ky == 0) corners[ky][kx].y = 0;
@@ -1166,7 +1186,8 @@ let loadFile;
 } //  // scope for loadFile
 
 function loadInitialFile() {
-  puzzle.srcImage.src = "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/game-assets/puzzle.jpg";
+  puzzle.srcImage.src =
+    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/game-assets/puzzle.jpg";
 }
 //-----------------------------------------------------------------------------
 function imageLoaded(puzzle) {
@@ -1374,7 +1395,7 @@ let events = []; // queue for events
                 if (moving.pp.ifNear(pp)) {
                   // a match !
                   playSoundEffect(
-                    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/jigsaw-match.mp3"
+                    "https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@latest/assets/menu/jigsaw-match.mp3"
                   );
                   // compare polypieces sizes to move smallest one
                   if (pp.pieces.length > moving.pp.pieces.length) {
@@ -1405,9 +1426,14 @@ let events = []; // queue for events
         //              tmpImage.style.top=(puzzle.polyPieces[0].y + puzzle.scaley / 2) / puzzle.contHeight * 100 + 50 + "%" ;
         //              tmpImage.style.left=(puzzle.polyPieces[0].x + puzzle.scalex / 2) / puzzle.contWidth * 100 + 50 + "%" ;
         tmpImage.style.left =
-          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) / puzzle.contWidth) * 100 + "%";
+          ((puzzle.polyPieces[0].x + puzzle.scalex / 2 + puzzle.gameWidth / 2) / puzzle.contWidth) *
+            100 +
+          "%";
         tmpImage.style.top =
-          ((puzzle.polyPieces[0].y + puzzle.scaley / 2 + puzzle.gameHeight / 2) / puzzle.contHeight) * 100 + "%";
+          ((puzzle.polyPieces[0].y + puzzle.scaley / 2 + puzzle.gameHeight / 2) /
+            puzzle.contHeight) *
+            100 +
+          "%";
 
         tmpImage.classList.add("moving");
         setTimeout(() => (tmpImage.style.top = tmpImage.style.left = "50%"), 0);
