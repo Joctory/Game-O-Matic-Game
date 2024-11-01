@@ -17,10 +17,10 @@
   width: 100%;
   opacity: 0.2;
   animation: animatedBackground 40s linear infinite;
-  /* -moz-animation: animatedBackground 40s linear infinite;
+  -moz-animation: animatedBackground 40s linear infinite;
   -webkit-animation: animatedBackground 40s linear infinite;
   -ms-animation: animatedBackground 40s linear infinite;
-  -o-animation: animatedBackground 40s linear infinite; */
+  -o-animation: animatedBackground 40s linear infinite;
 }
 
 @keyframes animatedBackground {
@@ -28,15 +28,15 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 600px -600px;
+    background-position: 610px -610px;
   }
 }
-/* @-moz-keyframes animatedBackground {
+@-moz-keyframes animatedBackground {
   0% {
     background-position: 0 0;
   }
   100% {
-    background-position: 600px 600px;
+    background-position: 610px 610px;
   }
 }
 @-webkit-keyframes animatedBackground {
@@ -44,7 +44,7 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 600px 600px;
+    background-position: 610px 610px;
   }
 }
 @-ms-keyframes animatedBackground {
@@ -52,7 +52,7 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 600px 600px;
+    background-position: 610px 610px;
   }
 }
 @-o-keyframes animatedBackground {
@@ -60,9 +60,9 @@
     background-position: 0 0;
   }
   100% {
-    background-position: 600px 600px;
+    background-position: 610px 610px;
   }
-} */
+}
 
 #menu {
   position: relative;

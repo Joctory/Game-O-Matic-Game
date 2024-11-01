@@ -276,6 +276,7 @@ html {
 .glide__bullet {
   padding: 5px !important;
   border-radius: 100% !important;
+  background-color: #ffffff;
 }
 
 .glide__bullet.glide__bullet--active {
@@ -818,7 +819,8 @@ html {
 .loader {
   width: 45px;
   height: 30px;
-  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%, linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#004ce4 0 0) 0 100%/100% 50%,
+    linear-gradient(#004ce4 0 0) 0 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   position: relative;
   clip-path: inset(-100% 0 0 0);
@@ -837,7 +839,8 @@ html {
 }
 .loader::after {
   inset: -100% 0 100%;
-  background: linear-gradient(#e50021 0 0) 0 0/100% 50%, linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
+  background: linear-gradient(#e50021 0 0) 0 0/100% 50%,
+    linear-gradient(#e50021 0 0) 100% 0 / calc(100% / 3) 100%;
   background-repeat: no-repeat;
   animation-name: l2-2;
 }

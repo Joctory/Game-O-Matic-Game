@@ -23,10 +23,10 @@
   width: 100%;
   opacity: 0.2;
   animation: animatedBackground 40s linear infinite;
-  /* -moz-animation: animatedBackground 40s linear infinite;
+  -moz-animation: animatedBackground 40s linear infinite;
   -webkit-animation: animatedBackground 40s linear infinite;
   -ms-animation: animatedBackground 40s linear infinite;
-  -o-animation: animatedBackground 40s linear infinite; */
+  -o-animation: animatedBackground 40s linear infinite;
 }
 
 #Grid {

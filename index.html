@@ -5,20 +5,19 @@
     <meta
       name="viewport"
       charset="UTF-8"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
-    />
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
     <title>AXS Game-O-Matic</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/Glide.js/3.6.0/css/glide.core.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/jigsaw.css"
-    />
+      href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/jigsaw.css" />
     <link
       rel="stylesheet"
       type="text/css"
-      href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/flip.css"
-    />
+      href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/flip.css" />
   </head>
   <style>
     .init-loader-main {
@@ -32,60 +31,80 @@
       flex-direction: column;
       justify-content: center;
       align-items: center;
-      z-index: 10;
+      z-index: 9999;
     }
   </style>
   <body>
+    <!-- Game Init Loading -->
+    <div class="init-loader-main" id="game-init-loader">
+      <span class="init-text">Loading...</span>
+      <span class="init-loader"></span>
+      <div id="game-init-button" class="game-init-button">
+        <img
+          src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
+      </div>
+    </div>
+
+    <!-- Game Main Container -->
     <div class="game-container">
       <img
         class="cloud-bg-left"
-        src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg_cloud_left.png"
-      />
+        src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg_cloud_left.png" />
       <img
         class="cloud-bg-right"
-        src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg_cloud_right.png"
-      />
+        src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/bg_cloud_right.png" />
       <div id="home-screen" class="menu-container">
         <div class="game-entry-main">
           <div class="game-entry">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
             <span id="entry-id">0</span>
           </div>
           <div class="setting-main">
             <div class="setting-button music-button game-btn" onclick="toggleMusicIcon()">
               <img
                 src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/music-on.png"
-                id="music-img"
-              />
+                id="music-img" />
             </div>
             <div class="setting-button sound-button game-btn" onclick="toggleSoundIcon()">
               <img
                 src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/sound-effect-on.png"
-                id="sound-effect-img"
-              />
+                id="sound-effect-img" />
             </div>
           </div>
         </div>
         <div id="logo-main" class="logo-main">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/logo.png" class="logo-img" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/logo.png"
+            class="logo-img" />
         </div>
         <div id="selection-main" class="selection-main">
-          <div class="start-btn game-btn" id="startBtn" onclick="showGameSelectionPreview(gamePreview)">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/play-button.png" />
+          <div
+            class="start-btn game-btn"
+            id="startBtn"
+            onclick="showGameSelectionPreview(gamePreview)">
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/play-button.png" />
           </div>
           <div class="redeem-btn game-btn" onclick="showRedeemMenu(redeemMenu)">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/redeem-button.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/redeem-button.png" />
           </div>
           <div class="credit-btn game-btn" onclick="showRedeemMenu(creditMenu)">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/credit-button.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/credit-button.png" />
           </div>
         </div>
       </div>
 
       <!-- Game Selection -->
       <div id="game-preview" class="game-selection">
-        <div id="preview-close" class="menu-close-btn game-btn" onclick="hideGamePreview(gamePreview)">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
+        <div
+          id="preview-close"
+          class="menu-close-btn game-btn"
+          onclick="hideGamePreview(gamePreview)">
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
         </div>
         <div class="glide">
           <div class="glide__track" data-glide-el="track">
@@ -95,8 +114,7 @@
                   <div class="game-title">
                     <img
                       src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/game-title-holder.png"
-                      class="game-title-holder"
-                    />
+                      class="game-title-holder" />
                     <span class="game-title-span">Jigsaw Jam</span>
                   </div>
                   <div class="game-preview-animation">
@@ -105,14 +123,15 @@
                       background="transparent"
                       speed="1"
                       loop
-                      autoplay
-                    >
+                      autoplay>
                     </dotlottie-player>
                   </div>
-                  <div id="game1selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game1')">
+                  <div
+                    id="game1selectbutton"
+                    class="play-btn game-btn-mg"
+                    onclick="menustartGame('game1')">
                     <img
-                      src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png"
-                    />
+                      src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png" />
                   </div>
                 </div>
               </li>
@@ -121,8 +140,7 @@
                   <div class="game-title">
                     <img
                       src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/game-title-holder.png"
-                      class="game-title-holder"
-                    />
+                      class="game-title-holder" />
                     <span class="game-title-span">Flip Frenzy</span>
                   </div>
                   <div class="game-preview-animation">
@@ -131,14 +149,15 @@
                       background="transparent"
                       speed="1"
                       loop
-                      autoplay
-                    >
+                      autoplay>
                     </dotlottie-player>
                   </div>
-                  <div id="game2selectbutton" class="play-btn game-btn-mg" onclick="menustartGame('game2')">
+                  <div
+                    id="game2selectbutton"
+                    class="play-btn game-btn-mg"
+                    onclick="menustartGame('game2')">
                     <img
-                      src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png"
-                    />
+                      src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/select-button.png" />
                   </div>
                 </div>
               </li>
@@ -149,14 +168,12 @@
             <button class="control-btn" id="prev-btn" data-glide-dir="<">
               <img
                 class="prev-btn-img"
-                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow.png"
-              />
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow.png" />
             </button>
             <button class="control-btn" id="next-btn" data-glide-dir=">">
               <img
                 class="next-btn-img"
-                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow.png"
-              />
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/arrow.png" />
             </button>
           </div>
           <!-- Bullets -->
@@ -170,12 +187,14 @@
       <!-- Game 1 -->
       <div id="game1" class="mini-game-container closed">
         <div onclick="confirmExit()" class="back-button game-btn-mg">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-game.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-game.png" />
         </div>
         <!-- Game 1 HTML elements -->
         <div class="game-one-container">
           <div class="timer-main" id="timerg1">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/timer-holder.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/timer-holder.png" />
             <span class="timerspan" id="g1timeleft">60</span>
           </div>
           <div id="forPuzzle"></div>
@@ -183,16 +202,21 @@
           <!-- How to play -->
           <div id="howtoplayDivg1" class="pop-container">
             <div class="pop-container-img">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/how-to-play-blue.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/how-to-play-blue.png" />
             </div>
             <div class="pop-container-inner">
               <h3 class="ingame-long-p">
-                Sort pieces by color, shape, or edges, start with the corners and edges, and match pieces to complete
-                the picture.
+                Sort pieces by color, shape, or edges, start with the corners and edges, and match
+                pieces to complete the picture.
               </h3>
               <div class="pop-container-selection">
-                <div id="startButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg1)">
-                  <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
+                <div
+                  id="startButtong1"
+                  class="menu-btn game-btn-mg"
+                  onclick="hidePreviewInGame(howtoplayDivg1)">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
                 </div>
               </div>
             </div>
@@ -201,7 +225,8 @@
           <!-- Level Complete -->
           <div id="completeMenug1" class="pop-container">
             <div class="pop-container-img">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
               <h3 class="ingame-title">Game Completed!</h3>
             </div>
             <div class="pop-container-inner">
@@ -213,16 +238,17 @@
                 background="transparent"
                 speed="1"
                 loop
-                autoplay
-              >
+                autoplay>
               </dotlottie-player>
               <div class="entry-redeem-main game-entry">
-                <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
                 <span id="entry-redeem-g1-id">0</span>
               </div>
               <div class="pop-container-selection">
                 <div id="homebuttong1" class="menu-btn game-btn-mg" onclick="exitGame()">
-                  <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
                 </div>
               </div>
             </div>
@@ -231,7 +257,8 @@
           <!-- Level Fail -->
           <div id="failMenug1" class="pop-container">
             <div class="pop-container-banner">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
               <span class="pop-banner-title">Game Failed</span>
             </div>
             <div class="pop-container-inner">
@@ -241,12 +268,15 @@
                 background="transparent"
                 speed="1"
                 loop
-                autoplay
-              >
+                autoplay>
               </dotlottie-player>
               <div class="pop-container-selection">
-                <div id="restartButtong1" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug1)">
-                  <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/replay-button.png" />
+                <div
+                  id="restartButtong1"
+                  class="menu-btn game-btn-mg"
+                  onclick="hidePreviewInGame(failMenug1)">
+                  <img
+                    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/replay-button.png" />
                 </div>
               </div>
             </div>
@@ -262,12 +292,14 @@
       <!-- Game 2 -->
       <div id="game2" class="mini-game-container closed">
         <div onclick="confirmExit()" class="back-button game-btn-mg">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-game.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-game.png" />
         </div>
         <!-- Game 2 HTML elements -->
         <div class="game-two-container">
           <div class="timer-main" id="timerg1">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/timer-holder.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/timer-holder.png" />
             <span class="timerspan" id="g2timeleft">60</span>
           </div>
           <div id="Grid">
@@ -325,17 +357,22 @@
         <!-- How to play -->
         <div id="howtoplayDivg2" class="pop-container">
           <div class="pop-container-banner">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/blue-banner.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/blue-banner.png" />
             <span class="pop-banner-title">How to Play</span>
           </div>
           <div class="pop-container-inner">
             <h3 class="ingame-long-p">
-              Uncover two matching symbols at once to eliminate them from the game. Beat the clock to eliminate all
-              cards as fast as you can and win!
+              Uncover two matching symbols at once to eliminate them from the game. Beat the clock
+              to eliminate all cards as fast as you can and win!
             </h3>
             <div class="pop-container-selection">
-              <div id="startButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(howtoplayDivg2)">
-                <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
+              <div
+                id="startButtong2"
+                class="menu-btn game-btn-mg"
+                onclick="hidePreviewInGame(howtoplayDivg2)">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
               </div>
             </div>
           </div>
@@ -344,26 +381,30 @@
         <!-- Level Complete -->
         <div id="completeMenug2" class="pop-container">
           <div class="pop-container-img">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
             <h3 class="ingame-title">Game Completed!</h3>
           </div>
           <div class="pop-container-inner">
-            <span class="ingame-long-p"> Congratulation! You have completed the puzzle! You have earn one entry! </span>
+            <span class="ingame-long-p">
+              Congratulation! You have completed the puzzle! You have earn one entry!
+            </span>
             <dotlottie-player
               src="https://lottie.host/52c879c6-56a2-4998-8017-d5e5b53d3066/2pFeDekCuL.lottie"
               background="transparent"
               speed="1"
               loop
-              autoplay
-            >
+              autoplay>
             </dotlottie-player>
             <div class="entry-redeem-main game-entry">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
               <span id="entry-redeem-g2-id">0</span>
             </div>
             <div class="pop-container-selection">
               <div id="homebuttong1" class="menu-btn game-btn-mg" onclick="exitGame()">
-                <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
+                <img
+                  src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
               </div>
             </div>
           </div>
@@ -372,7 +413,8 @@
         <!-- Level Fail -->
         <div id="failMenug2" class="pop-container">
           <div class="pop-container-banner">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
             <span class="pop-banner-title">Game Failed</span>
           </div>
           <div class="pop-container-inner">
@@ -382,12 +424,15 @@
               background="transparent"
               speed="1"
               loop
-              autoplay
-            >
+              autoplay>
             </dotlottie-player>
             <div class="pop-container-selection">
-              <div id="restartButtong2" class="menu-btn game-btn-mg" onclick="hidePreviewInGame(failMenug2)">
-                <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/replay-button.png" />
+              <div
+                id="restartButtong2"
+                class="menu-btn game-btn-mg"
+                onclick="hidePreviewInGame(failMenug2)">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/replay-button.png" />
               </div>
             </div>
           </div>
@@ -400,7 +445,8 @@
       <!-- Game Exit Overlay -->
       <div id="game-exit" class="game-exit pop-container">
         <div class="pop-container-banner">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/blue-banner.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/blue-banner.png" />
           <span class="pop-banner-title">Quit Game</span>
         </div>
         <div class="pop-container-inner">
@@ -410,15 +456,16 @@
             background="transparent"
             speed="1"
             loop
-            autoplay
-          >
+            autoplay>
           </dotlottie-player>
           <div class="pop-container-selection">
             <div onclick="exitGame()" class="exit-btn game-btn-mg">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-red.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-red.png" />
             </div>
             <div onclick="noExitGame()" class="exit-btn game-btn-mg">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/resume-button.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/resume-button.png" />
             </div>
           </div>
         </div>
@@ -427,10 +474,12 @@
       <!-- Redeem Rewards -->
       <div id="redeemMenu" class="pop-container">
         <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(redeemMenu)">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
         </div>
         <div class="pop-container-banner">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
           <span class="pop-banner-title">Rewards</span>
         </div>
         <div class="pop-container-inner">
@@ -438,7 +487,8 @@
             Are you ready to redeem the rewards? Show this screen to our staff!
           </span>
           <div class="entry-redeem-main game-entry">
-            <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
+            <img
+              src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/trial-holder.png" />
             <span id="entry-redeem-id">0</span>
           </div>
           <span id="confirmRedeemSText" class="span-text-small alert"
@@ -446,10 +496,12 @@
           >
           <div class="pop-container-selection two-button">
             <div class="exit-btn game-btn-mg" onclick="hidePreview(redeemMenu)">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-red.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/exit-red.png" />
             </div>
             <div onclick="confirmRedeem()" id="confirmRedeemButton" class="exit-btn game-btn-mg">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/confirm-button.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/confirm-button.png" />
             </div>
           </div>
         </div>
@@ -457,11 +509,16 @@
 
       <!-- Confirm Redeem -->
       <div id="confirmRedeemMenu" class="pop-container">
-        <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(confirmRedeemMenu)">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
+        <div
+          id="preview-close"
+          class="menu-close-btn game-btn"
+          onclick="hidePreview(confirmRedeemMenu)">
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
         </div>
         <div class="pop-container-banner">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/red-banner.png" />
           <span class="pop-banner-title">Thank You</span>
         </div>
         <div class="pop-container-inner">
@@ -471,12 +528,12 @@
             background="transparent"
             speed="1"
             loop
-            autoplay
-          >
+            autoplay>
           </dotlottie-player>
           <div class="pop-container-selection">
             <div class="menu-btn game-btn-mg" onclick="hidePreview(confirmRedeemMenu)">
-              <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
+              <img
+                src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/home-button.png" />
             </div>
           </div>
         </div>
@@ -485,10 +542,12 @@
       <!-- Credit -->
       <div id="creditMenu" class="pop-container">
         <div id="preview-close" class="menu-close-btn game-btn" onclick="hidePreview(creditMenu)">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/close-btn.png" />
         </div>
         <div class="pop-container-banner">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
+          <img
+            src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/green-banner.png" />
           <span class="pop-banner-title">Credits</span>
         </div>
         <div class="pop-container-inner">
@@ -513,15 +572,6 @@
         <div class="game-loader"></div>
       </div>
 
-      <!-- Game Init Loading -->
-      <div class="init-loader-main" id="game-init-loader">
-        <span class="init-text">Loading...</span>
-        <span class="init-loader"></span>
-        <div id="game-init-button" class="game-init-button">
-          <img src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/assets/menu/start-button.png" />
-        </div>
-      </div>
-
       <!-- Game Exit Overlay -->
       <div class="overlay" id="game-exit-overlay"></div>
 
@@ -532,14 +582,21 @@
     </div>
   </body>
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@glidejs/glide"></script>
-  <script src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs" type="module"></script>
+  <script
+    src="https://unpkg.com/@dotlottie/player-component@latest/dist/dotlottie-player.mjs"
+    type="module"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/flip.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/jigsaw.js"></script>
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/menu.js"></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/flip.js"></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/jigsaw.js"></script>
+  <script
+    type="text/javascript"
+    src="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/js/menu.js"></script>
   <link
     rel="stylesheet"
     type="text/css"
-    href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/menu.css"
-  />
+    href="https://cdn.jsdelivr.net/gh/Joctory/Game-O-Matic-Game@main/css/menu.css" />
 </html>
