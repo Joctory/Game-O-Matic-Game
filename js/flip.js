@@ -1,3 +1,4 @@
+/* Developed by Joel Lee @ Joasis Web */
 "use-strict";
 
 const theme = ["flip1", "flip2", "flip3", "flip4", "flip5", "flip6"];

@@ -1,3 +1,4 @@
+/* Developed by Joel Lee @ Joasis Web */
 var glide = new Glide(".glide", {
   type: "slider",
   startAt: 0,

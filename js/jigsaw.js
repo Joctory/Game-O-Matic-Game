@@ -1,3 +1,4 @@
+/* Developed by Joel Lee @ Joasis Web */
 "use strict";
 
 const startButtong1 = document.getElementById("startButtong1");
