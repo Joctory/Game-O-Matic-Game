@@ -492,11 +492,18 @@ document.addEventListener("DOMContentLoaded", function () {
   glide.mount();
 
   document.body.classList.add("disable-right-click");
-  var meta = document.createElement("meta");
-  meta.name = "viewport";
-  meta.charset = "UTF-8";
-  meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
-  document.getElementsByTagName("head")[0].appendChild(meta);
+  var meta = document.querySelector("meta[name='viewport']");
+  if (meta) {
+    meta.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    );
+  } else {
+    meta.name = "viewport";
+    meta.charset = "UTF-8";
+    meta.content = "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no";
+    document.getElementsByTagName("head")[0].appendChild(meta);
+  }
 });
 
 window.addEventListener("load", function () {
