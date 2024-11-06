@@ -486,9 +486,6 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (index == 1) {
       prevButton.style.display = "flex";
       nextButton.style.display = "none";
-    } else {
-      prevButton.style.display = "none";
-      nextButton.style.display = "flex";
     }
   });
   updateGameEntry();
@@ -511,6 +508,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function () {
   glide.update();
+  nextButton.style.display = "flex";
   // playMusic();
   setTimeout(() => {
     initLoader.classList.add("loaded"); // Add the class to make it 100%
