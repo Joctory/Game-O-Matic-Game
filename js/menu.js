@@ -486,6 +486,9 @@ document.addEventListener("DOMContentLoaded", function () {
     } else if (index == 1) {
       prevButton.style.display = "flex";
       nextButton.style.display = "none";
+    } else {
+      prevButton.style.display = "none";
+      nextButton.style.display = "flex";
     }
   });
   updateGameEntry();
