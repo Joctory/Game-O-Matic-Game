@@ -508,7 +508,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 window.addEventListener("load", function () {
   glide.update();
-  nextButton.style.display = "flex";
+  setTimeout(function () {
+    nextButton.style.display = "flex";
+  }, 1000);
   // playMusic();
   setTimeout(() => {
     initLoader.classList.add("loaded"); // Add the class to make it 100%
