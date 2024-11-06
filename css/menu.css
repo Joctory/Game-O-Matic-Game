@@ -54,6 +54,10 @@ html {
   background-color: #000;
 }
 
+body{
+  touch-action: pan-y pan-x;
+}
+
 .game-btn {
   position: relative;
   display: flex;
