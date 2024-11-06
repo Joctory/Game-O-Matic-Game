@@ -490,6 +490,15 @@ document.addEventListener("DOMContentLoaded", function () {
   });
   updateGameEntry();
   glide.mount();
+
+  document.body.classList.add("disable-right-click");
+  var meta = document.querySelector("meta[name='viewport']");
+  if (meta) {
+    meta.setAttribute(
+      "content",
+      "width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"
+    );
+  }
 });
 
 window.addEventListener("load", function () {
