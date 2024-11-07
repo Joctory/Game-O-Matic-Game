@@ -22,6 +22,8 @@ var inGame1overlay = document.getElementById("game-1-overlay");
 var inGame2overlay = document.getElementById("game-2-overlay");
 var overlayLoader = document.getElementById("overlay-loader");
 var gameoverlayLoader = document.getElementById("game-overlay-loader");
+var loadingSafety1 = document.getElementById("loading-tip1");
+var loadingSafety2 = document.getElementById("loading-tip2");
 var gamePreview = document.getElementById("game-preview");
 var redeemMenu = document.getElementById("redeemMenu");
 var confirmRedeemMenu = document.getElementById("confirmRedeemMenu");
@@ -207,26 +209,28 @@ function showGameSelectionPreview(div) {
 function game1Logic() {
   // Game 1 code here
   gameoverlayLoader.style.display = "flex";
+  loadingSafety1.style.display = "flex";
   setTimeout(() => {
     gameoverlayLoader.style.display = "none";
+    loadingSafety1.style.display = "none";
     resetJigsawGame();
     playMusic();
     showPreviewInGame(howtoplayDivg1);
-  }, 3000);
-
+  }, 5000);
   console.log("Game 1 started in full screen");
 }
 
 function game2Logic() {
   // Game 2 code here
   gameoverlayLoader.style.display = "flex";
+  loadingSafety2.style.display = "flex";
   setTimeout(() => {
     gameoverlayLoader.style.display = "none";
+    loadingSafety2.style.display = "none";
     resetFlipGame();
     playMusic();
     showPreviewInGame(howtoplayDivg2);
-  }, 3000);
-
+  }, 5000);
   console.log("Game 2 started in full screen");
 }
 
