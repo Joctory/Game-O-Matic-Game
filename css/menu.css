@@ -794,9 +794,10 @@ html {
 }
 
 .game-safety-tips dotlottie-player {
-  width: 80%;
-  margin-top: -55px;
+  width: 50%;
+  margin-top: -20px;
   margin-bottom: -55px;
+  max-width: 200px;
 }
 
 .pop-container-inner .ingame-long-p.ingame-safety-p {
