@@ -738,6 +738,7 @@ html {
 #completeMenug1 .game-safety-tips,
 #completeMenug2 .game-safety-tips {
   display: flex;
+  margin-bottom: 0px;
 }
 
 #completeMenug1.pop-container .game-entry,
