@@ -172,6 +172,7 @@ html {
   z-index: 0;
 }
 
+#entry-id,
 .timerspan {
   position: absolute;
   left: 51%;
@@ -181,7 +182,6 @@ html {
   text-shadow: 0px -1px #363636;
 }
 
-#entry-id,
 #entry-redeem-id,
 #entry-redeem-g1-id,
 #entry-redeem-g2-id {
