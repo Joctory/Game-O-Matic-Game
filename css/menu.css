@@ -735,6 +735,11 @@ html {
   font-size: 1.2rem;
 }
 
+#completeMenug1 .game-safety-tips,
+#completeMenug2 .game-safety-tips {
+  display: flex;
+}
+
 #completeMenug1.pop-container .game-entry,
 #completeMenug2.pop-container .game-entry {
   margin-top: 0vh;
